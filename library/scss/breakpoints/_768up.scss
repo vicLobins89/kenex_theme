@@ -1,0 +1,372 @@
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: Tablet & Small Desktop Stylesheet
+
+******************************************************************/
+
+/*********************
+GENERAL STYLES
+*********************/
+
+html {
+	font-size: 14px;
+}
+
+body {}
+
+
+/*********************
+FONT STYLES
+*********************/
+
+p, .p {
+	font-size: 1em;
+}
+
+.narrow-para {
+	max-width: 60%;
+}
+
+/*********************
+HEADER STYLES
+*********************/
+
+.header {
+	position: relative;
+	font-size: 0.8rem;
+}
+
+#inner-header {
+	position: relative;
+}
+
+.logo {
+	width: 9rem;
+    height: 6rem;
+	top: 0;
+	left: 0;
+	
+	img {
+		margin: 1.5rem 0;
+	}
+	
+	.footer & {
+		width: 7rem;
+		padding: 1.2rem;
+		
+		img {
+			margin: 0;
+		}
+	}
+}
+
+/*********************
+NAVIGATION STYLES
+*********************/
+
+.menu-button {
+	display: none;
+}
+
+.nav {
+	.menu-item {
+		display: inline-block;
+		
+		a {
+			text-decoration: none;
+		}
+	}
+}
+
+.socket {
+	display: block;
+	background: lighten($gray, 35%);
+	text-align: right;
+	font-size: 0.675rem;
+	padding: 0.75em 1em;
+}
+
+.socket-nav {
+	display: inline-block;
+	margin: 4px 0 0 0;
+	vertical-align: middle;
+	
+	> li {
+		> a {
+			color: $white;
+			margin: 0 1em;
+			outline: none !important;
+			
+			&:before {
+				content: "\007c";
+				display: inline-block;
+				margin-right: 2em;
+				color: $white !important;
+			}
+			
+			&:hover, &:focus {
+				color: $blue;
+			}
+		}
+		
+		&:first-child {
+			a:before {
+				content: '';
+				display: none;
+			}
+		}
+	}
+}
+
+.search-box {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 1em;
+	
+	#s {
+		background: none;
+		color: $white;
+		border-bottom: 1px solid $white;
+		border-left: none;
+		border-top: none;
+		border-right: none;
+		outline: none;
+		padding: 0;
+		width: 190px;
+		font-size: 0.675rem;
+		
+		@include placeholder {
+			color: $white;
+		}
+	}
+	
+	button {
+		top: 1px;
+		left: -2px;
+		position: relative;
+		border: none;
+		outline: none;
+		background: none;
+		padding: 0;
+		color: $white;
+	}
+}
+
+.primary-nav {
+	position: relative;
+    padding-left: 18.5rem;
+	max-height: none;
+	background: none;
+	overflow: visible;
+
+	> li {
+		border: none;
+		padding: 0;
+		
+		> a {
+			color: $blue;
+			outline: none;
+			padding: 1.5rem 1.75em;
+			padding-bottom: calc(1.5rem - 7px);
+			border-bottom: 7px solid $white;
+			font-size: 0.9em;
+			
+			&:hover,
+			&:focus {
+				color: $gray;
+			}
+			
+			&.active {
+				color: $gray;
+				border-color: $blue !important;
+			}
+		}
+
+		ul.sub-menu,
+		ul.children {
+			position: absolute;
+			overflow: visible;
+			background: rgba($blue, .9);
+			width: 100%;
+			width: calc(100% - 10rem);
+			height: 4.1rem;
+			opacity: 0;
+			visibility: hidden;
+			top: 3.9rem;
+			right: 200%;
+			margin: 0;
+			padding: 1.4rem 0 1rem 2.5rem;
+			text-align: left;
+			font-size: 0;
+			z-index: 8;
+			@include transition (all 1s ease-out);
+			
+			&.active {
+				right: 0%;
+				opacity: 1;
+				visibility: visible;
+			}
+
+			li {
+				vertical-align: middle;
+				text-align: left;
+				display: inline-block;
+				padding: 0 1rem;
+				border: none;
+
+				a {
+					color: $white;
+					font-weight: bold;
+					font-size: 0.625rem;
+					display: inline;
+    				padding: 0;
+					border: none;
+					
+					br {
+						display: block;
+					}
+					
+					&:hover,
+					&:focus {
+						text-decoration: underline;
+						text-decoration-style: dotted;
+					}
+				}
+
+			}
+			
+			/* highlight sub-menu current page */
+			li.current-menu-item,
+			li.current_page_item,
+			li.current_page_ancestor {
+				a {}
+			}
+		}
+
+	} /* end .menu li */
+
+	/* highlight current page */
+	> li.current_page_item,
+	> li.current-menu-ancestor,
+	> li.current-menu-item,
+	> li.current_page_ancestor {
+		> a {
+			
+		}
+	}
+}
+
+.mobile-links {
+	display: none !important;
+}
+
+
+/*********************
+POSTS & CONTENT STYLES
+*********************/
+
+.featured-image {
+	width: 100%;
+    margin-left: auto;
+}
+
+.page-title {
+	font-size: 1rem;
+}
+
+.entry-content {
+	padding: 3rem;
+	font-size: 1rem;
+	
+	ul {
+		&.col-2 {
+			padding: 0;
+			
+			li {
+				width: 48%;
+				display: inline-block;
+			}
+		}
+	}
+}
+
+
+/*********************
+LAYOUT & GRID STYLES
+*********************/
+
+.wrap {
+	width: 760px;
+	
+	&.entry-content {
+		max-width: 100%;
+	}
+}
+
+.flex {
+	@include prefix(flex-direction, row, webkit ms);
+	
+	.flex-panel {
+		width: 33.333%;
+	}
+}
+
+/*********************
+SIDEBARS & ASIDES
+*********************/
+
+.sidebar {
+	margin-top: 2.2em;
+}
+
+.widgettitle {
+	border-bottom: 2px solid #444;
+	margin-bottom: 0.75em;
+}
+
+.widget {
+	padding: 0 10px;
+	margin: 2.2em 0;
+
+	ul {
+		li {
+			margin-bottom: 0.75em;
+
+			ul {
+				margin-top: 0.75em;
+				padding-left: 1em;
+			}
+		}
+	}
+}
+
+
+/*********************
+FOOTER STYLES
+*********************/
+
+.footer {
+	padding: 2.5rem 4rem;
+	margin-top: 4rem;
+}
+
+.footer-links {
+	margin: 0;
+	
+	ul {
+		padding-left: 13%;
+		float: left;
+
+		li {
+			margin: 0 10px;
+			font-size: 1em;
+		}
+	}
+}
+
+.copyright {
+	margin: 0;
+	text-align: left;
+}

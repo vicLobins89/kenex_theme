@@ -1,0 +1,490 @@
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: IE Stylesheet
+
+Import all the styles the standard stylesheet gets, only
+without the media queries.
+
+******************************************************************/
+/******************************************************************
+IMPORTS & DEPENDENCIES
+All the BASE styles are called already since IE can
+read those. Below we import the stuff IE can't
+understand (what's inside the media queries). We also need to
+import the mixins file so SASS can understand the variables.
+******************************************************************/
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: Variables
+
+******************************************************************/
+/*********************
+COLORS
+Choosing your colors http://0to255.com/
+*********************/
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: Typography
+
+******************************************************************/
+/*********************
+FONT FACE
+*********************/
+@font-face {
+  font-family: 'Helvetica Neue Bold Condensed';
+  src: url("../fonts/HelveticaNeueLTStd-BdCn.woff2") format("woff2"), url("../fonts/HelveticaNeueLTStd-BdCn.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'Helvetica Neue LT Std';
+  src: url("../fonts/HelveticaNeueLTStd-Bd.woff2") format("woff2"), url("../fonts/HelveticaNeueLTStd-Bd.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'Helvetica Neue LT Std';
+  src: url("../fonts/HelveticaNeueLTStd-Md.woff2") format("woff2"), url("../fonts/HelveticaNeueLTStd-Md.woff") format("woff");
+  font-weight: 500;
+  font-style: normal; }
+@font-face {
+  font-family: 'Helvetica Neue LT Std';
+  src: url("../fonts/HelveticaNeueLTStd-Lt.woff2") format("woff2"), url("../fonts/HelveticaNeueLTStd-Lt.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: Mixins Stylesheet
+
+Helpful:
+http://sachagreif.com/useful-sass-mixins/
+http://thesassway.com/intermediate/leveraging-sass-mixins-for-cleaner-code
+http://web-design-weekly.com/blog/2013/05/12/handy-sass-mixins/
+
+******************************************************************/
+/*********************
+TRANSITION
+*********************/
+/* @include transition(all 0.2s ease-in-out); */
+/*********************
+CSS3 GRADIENTS
+*********************/
+/* @include css-gradient(#dfdfdf,#f8f8f8); */
+/*********************
+BOX SIZING
+*********************/
+/* @include box-sizing(border-box); */
+/*********************
+VENDOR
+*********************/
+/*
+.selector {
+  @include prefix(transform, rotate(45deg), webkit ms);
+}
+*/
+/*********************
+CSS ANIMATIONS
+*********************/
+/*
+@include keyframes(move-the-object) {
+  0%   { left: 100px; }
+  100% { left: 200px; }
+}
+*/
+/*********************
+BOX SHADOW
+*********************/
+/*********************
+PLACEHOLDER
+*********************/
+/*
+.foo {
+  @include placeholder {
+    color: green;
+  }
+}
+
+@include placeholder {
+  color: red;
+}
+*/
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: IE Grid Styles
+
+******************************************************************/
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: 481px and Up Stylesheet
+
+******************************************************************/
+/*********************
+GENERAL STYLES
+*********************/
+html {
+  font-size: 13px; }
+
+/*********************
+NAVIGATION STYLES
+*********************/
+/* .menu is clearfixed inside mixins.scss */
+.menu {
+  /* end .menu ul */ }
+  .menu ul {
+    /* end .menu ul li */
+    /* highlight current page */
+    /* end current highlighters */ }
+
+/* end .menu */
+/*********************
+POSTS & CONTENT STYLES
+*********************/
+/* entry content */
+.entry-content .alignleft, .entry-content img.alignleft {
+  margin-right: 1.5em;
+  display: inline;
+  float: left; }
+.entry-content .alignright, .entry-content img.alignright {
+  margin-left: 1.5em;
+  display: inline;
+  float: right; }
+.entry-content .aligncenter, .entry-content img.aligncenter {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  clear: both; }
+
+/* end .entry-content */
+/*********************
+FOOTER STYLES
+*********************/
+/* end .footer-links */
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: Tablet & Small Desktop Stylesheet
+
+******************************************************************/
+/*********************
+GENERAL STYLES
+*********************/
+html {
+  font-size: 14px; }
+
+/*********************
+FONT STYLES
+*********************/
+p, .p {
+  font-size: 1em; }
+
+.narrow-para {
+  max-width: 60%; }
+
+/*********************
+HEADER STYLES
+*********************/
+.header {
+  position: relative;
+  font-size: 0.8rem; }
+
+#inner-header {
+  position: relative; }
+
+.logo {
+  width: 9rem;
+  height: 6rem;
+  top: 0;
+  left: 0; }
+  .logo img {
+    margin: 1.5rem 0; }
+  .footer .logo {
+    width: 7rem;
+    padding: 1.2rem; }
+    .footer .logo img {
+      margin: 0; }
+
+/*********************
+NAVIGATION STYLES
+*********************/
+.menu-button {
+  display: none; }
+
+.nav .menu-item {
+  display: inline-block; }
+  .nav .menu-item a {
+    text-decoration: none; }
+
+.socket {
+  display: block;
+  background: #bebfc2;
+  text-align: right;
+  font-size: 0.675rem;
+  padding: 0.75em 1em; }
+
+.socket-nav {
+  display: inline-block;
+  margin: 4px 0 0 0;
+  vertical-align: middle; }
+  .socket-nav > li > a {
+    color: #fff;
+    margin: 0 1em;
+    outline: none !important; }
+    .socket-nav > li > a:before {
+      content: "\007c";
+      display: inline-block;
+      margin-right: 2em;
+      color: #fff !important; }
+    .socket-nav > li > a:hover, .socket-nav > li > a:focus {
+      color: #283371; }
+  .socket-nav > li:first-child a:before {
+    content: '';
+    display: none; }
+
+.search-box {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 1em; }
+  .search-box #s {
+    background: none;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    outline: none;
+    padding: 0;
+    width: 190px;
+    font-size: 0.675rem; }
+    .search-box #s::-webkit-input-placeholder {
+      color: #fff; }
+    .search-box #s:-moz-placeholder {
+      color: #fff; }
+    .search-box #s::-moz-placeholder {
+      color: #fff; }
+    .search-box #s:-ms-input-placeholder {
+      color: #fff; }
+  .search-box button {
+    top: 1px;
+    left: -2px;
+    position: relative;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0;
+    color: #fff; }
+
+.primary-nav {
+  position: relative;
+  padding-left: 18.5rem;
+  max-height: none;
+  background: none;
+  overflow: visible;
+  /* end .menu li */
+  /* highlight current page */ }
+  .primary-nav > li {
+    border: none;
+    padding: 0; }
+    .primary-nav > li > a {
+      color: #283371;
+      outline: none;
+      padding: 1.5rem 1.75em;
+      padding-bottom: calc(1.5rem - 7px);
+      border-bottom: 7px solid #fff;
+      font-size: 0.9em; }
+      .primary-nav > li > a:hover, .primary-nav > li > a:focus {
+        color: #63656a; }
+      .primary-nav > li > a.active {
+        color: #63656a;
+        border-color: #283371 !important; }
+    .primary-nav > li ul.sub-menu,
+    .primary-nav > li ul.children {
+      position: absolute;
+      overflow: visible;
+      background: rgba(40, 51, 113, 0.9);
+      width: 100%;
+      width: calc(100% - 10rem);
+      height: 4.1rem;
+      opacity: 0;
+      visibility: hidden;
+      top: 3.9rem;
+      right: 200%;
+      margin: 0;
+      padding: 1.4rem 0 1rem 2.5rem;
+      text-align: left;
+      font-size: 0;
+      z-index: 8;
+      -webkit-transition: all 1s ease-out;
+      transition: all 1s ease-out;
+      /* highlight sub-menu current page */ }
+      .primary-nav > li ul.sub-menu.active,
+      .primary-nav > li ul.children.active {
+        right: 0%;
+        opacity: 1;
+        visibility: visible; }
+      .primary-nav > li ul.sub-menu li,
+      .primary-nav > li ul.children li {
+        vertical-align: middle;
+        text-align: left;
+        display: inline-block;
+        padding: 0 1rem;
+        border: none; }
+        .primary-nav > li ul.sub-menu li a,
+        .primary-nav > li ul.children li a {
+          color: #fff;
+          font-weight: bold;
+          font-size: 0.625rem;
+          display: inline;
+          padding: 0;
+          border: none; }
+          .primary-nav > li ul.sub-menu li a br,
+          .primary-nav > li ul.children li a br {
+            display: block; }
+          .primary-nav > li ul.sub-menu li a:hover, .primary-nav > li ul.sub-menu li a:focus,
+          .primary-nav > li ul.children li a:hover,
+          .primary-nav > li ul.children li a:focus {
+            text-decoration: underline;
+            text-decoration-style: dotted; }
+
+.mobile-links {
+  display: none !important; }
+
+/*********************
+POSTS & CONTENT STYLES
+*********************/
+.featured-image {
+  width: 100%;
+  margin-left: auto; }
+
+.page-title {
+  font-size: 1rem; }
+
+.entry-content {
+  padding: 3rem;
+  font-size: 1rem; }
+  .entry-content ul.col-2 {
+    padding: 0; }
+    .entry-content ul.col-2 li {
+      width: 48%;
+      display: inline-block; }
+
+/*********************
+LAYOUT & GRID STYLES
+*********************/
+.wrap {
+  width: 760px; }
+  .wrap.entry-content {
+    max-width: 100%; }
+
+.flex {
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row; }
+  .flex .flex-panel {
+    width: 33.333%; }
+
+/*********************
+SIDEBARS & ASIDES
+*********************/
+.sidebar {
+  margin-top: 2.2em; }
+
+.widgettitle {
+  border-bottom: 2px solid #444;
+  margin-bottom: 0.75em; }
+
+.widget {
+  padding: 0 10px;
+  margin: 2.2em 0; }
+  .widget ul li {
+    margin-bottom: 0.75em; }
+    .widget ul li ul {
+      margin-top: 0.75em;
+      padding-left: 1em; }
+
+/*********************
+FOOTER STYLES
+*********************/
+.footer {
+  padding: 2.5rem 4rem;
+  margin-top: 4rem; }
+
+.footer-links {
+  margin: 0; }
+  .footer-links ul {
+    padding-left: 13%;
+    float: left; }
+    .footer-links ul li {
+      margin: 0 10px;
+      font-size: 1em; }
+
+.copyright {
+  margin: 0;
+  text-align: left; }
+
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: Desktop Stylsheet
+
+******************************************************************/
+html {
+  font-size: 16px; }
+
+.wrap {
+  width: 930px; }
+
+.header {
+  font-size: 1rem; }
+
+.logo {
+  width: 11rem;
+  height: 4rem; }
+  .logo img {
+    margin: 0; }
+
+.primary-nav {
+  padding-left: 16.5rem; }
+  .primary-nav > li ul.sub-menu,
+  .primary-nav > li ul.children {
+    width: calc(100% - 16.5rem);
+    height: 3.65rem;
+    top: 4.1rem;
+    padding: 1.2rem 0 1rem 2.5rem; }
+    .primary-nav > li ul.sub-menu li,
+    .primary-nav > li ul.children li {
+      padding: 0 1rem; }
+      .primary-nav > li ul.sub-menu li a,
+      .primary-nav > li ul.children li a {
+        font-size: 0.625rem; }
+
+.footer-links ul li {
+  margin: 0 2rem; }
+
+/******************************************************************
+ADDITIONAL IE FIXES
+For more info on using Modernizr classes:
+http://www.modernizr.com/docs/
+******************************************************************/
+/*
+For example:
+
+.no-textshadow .class { ... }
+
+Can also target specific versions by using the classes applied to
+the html element. Check header.php file to see what they are:
+
+.lt-ie8 .class { ... }
+
+*/

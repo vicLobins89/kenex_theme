@@ -1,1 +1,1 @@
-# kenex_theme
+Perrigo UK & Ireland WP Theme

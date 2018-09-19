@@ -1,0 +1,33 @@
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: Super Large Monitor Stylesheet
+
+******************************************************************/
+
+html {
+	font-size: 17px;
+}
+
+.wrap {
+  width: 1140px;
+}
+
+.primary-nav {
+    > li {
+		ul.sub-menu,
+		ul.children {
+			padding: 1rem 0 1rem 2.5rem;
+			
+			li {
+				padding: 0 1.15rem;
+
+				a {	
+					font-size: 0.775rem;
+				}
+
+			}
+		}
+	}
+}

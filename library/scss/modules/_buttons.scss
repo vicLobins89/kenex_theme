@@ -1,0 +1,80 @@
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: Button Styles
+
+Helpful Links:
+http://galp.in/blog/2011/08/02/the-ui-guide-part-1-buttons/
+
+******************************************************************/
+
+/*********************
+BUTTON DEFAULTS
+
+Quick video guide:
+http://www.youtube.com/watch?v=hwdVpKiJzac
+
+*********************/
+
+%btn {
+	position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid #fff;
+    background-color: transparent;
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 500;
+    padding: 0.5rem 1rem 0.3rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    text-align: center;
+    clear: both;
+    outline: none;
+	@include transition(all 0.2s ease-in-out);
+
+	// hovering on the btn
+	&:hover, &:focus {
+		color: $white;
+		text-decoration: none;
+	} // end hover
+
+	// clicking on the button
+	&:active {
+		top: 1px;
+	} // end active
+	
+	a {
+		color: inherit !important;
+		text-decoration: inherit !important;
+	}
+
+} // end .button
+
+.primary-btn, a.primary-btn {
+	@extend %btn; // here we load the btn defaults
+	background-color: transparent;
+	border-color: $white;
+	color: $white;
+
+	&:hover,
+	&:focus {
+		background-color: $white;
+		color: $alt-blue;
+	} // end hover// end active
+}
+
+.secondary-btn, a.secondary-btn {
+	@extend %btn; // here we load the btn defaults
+	background-color: transparent;
+	border-color: $blue;
+	color: $blue;
+
+	&:hover,
+	&:focus {
+		background-color: $alt-blue;
+		color: $white;
+	} // end hover// end active
+}
