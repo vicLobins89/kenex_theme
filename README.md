@@ -1,1 +1,1 @@
-Perrigo UK & Ireland WP Theme
+Kenex WP (WooCommerce) Theme
