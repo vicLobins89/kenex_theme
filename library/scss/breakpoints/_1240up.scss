@@ -11,7 +11,9 @@ html {
 }
 
 .wrap {
-  width: 1140px;
+	> div {
+		width: 1140px;
+	}
 }
 
 .primary-nav {

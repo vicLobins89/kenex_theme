@@ -24,10 +24,11 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
     color: #fff;
     border: 2px solid #fff;
     background-color: transparent;
+	border-radius: 6px;
     font-size: 1rem;
+	font-weight: bold;
     line-height: 1;
-    font-weight: 500;
-    padding: 0.5rem 1rem 0.3rem;
+    padding: 0.5rem 3rem;
     margin: 1rem 0;
     cursor: pointer;
     text-align: center;
@@ -55,14 +56,14 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 
 .primary-btn, a.primary-btn {
 	@extend %btn; // here we load the btn defaults
-	background-color: transparent;
-	border-color: $white;
+	background-color: $orange;
+	border-color: $orange;
 	color: $white;
 
 	&:hover,
 	&:focus {
 		background-color: $white;
-		color: $alt-blue;
+		color: $orange;
 	} // end hover// end active
 }
 
@@ -71,10 +72,13 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 	background-color: transparent;
 	border-color: $blue;
 	color: $blue;
+	font-weight: normal;
+	padding: 0.5rem 2rem;
+	border-width: 1px;
 
 	&:hover,
 	&:focus {
-		background-color: $alt-blue;
-		color: $white;
+		background-color: $orange;
+		color: $blue;
 	} // end hover// end active
 }

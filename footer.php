@@ -3,9 +3,12 @@
 			<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
 
 				<div id="inner-footer" class="cf">
+					
+					<?php get_sidebar('footer1'); ?>
+					<?php get_sidebar('footer2'); ?>
 
-					<nav role="navigation">
-						<?php wp_nav_menu(array(
+					<!--<nav role="navigation">
+						<?php/* wp_nav_menu(array(
     					'container' => 'div',                           // enter '' to remove nav container (just make sure .footer-links in _base.scss isn't wrapping)
     					'container_class' => 'footer-links cf',         // class of container (should you choose to use it)
     					'menu' => __( 'Footer Links', 'bonestheme' ),   // nav name
@@ -17,10 +20,10 @@
     					'link_after' => '',                             // after each link
     					'depth' => 0,                                   // limit the depth of the nav
     					'fallback_cb' => 'bones_footer_links_fallback'  // fallback function
-						)); ?>
+						)); */?>
 					</nav>
 
-					<p class="source-org copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?></p>
+					<p class="source-org copyright">&copy; <?php //echo date('Y'); ?> <?php bloginfo( 'name' ); ?></p>-->
 
 				</div>
 

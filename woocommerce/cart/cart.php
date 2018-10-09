@@ -165,6 +165,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 		do_action( 'woocommerce_cart_collaterals' );
 		do_action( 'woocommerce_proceed_to_checkout' );
 	?>
+	<a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>" class="checkout-button button alt wc-forward">
+	Continue Shopping</a>
 </div>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>

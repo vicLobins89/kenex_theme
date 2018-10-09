@@ -22,7 +22,7 @@ FONT STYLES
 *********************/
 
 p, .p {
-	font-size: 1em;
+	font-size: 1.15em;
 }
 
 .narrow-para {
@@ -43,23 +43,8 @@ HEADER STYLES
 }
 
 .logo {
-	width: 9rem;
-    height: 6rem;
 	top: 0;
 	left: 0;
-	
-	img {
-		margin: 1.5rem 0;
-	}
-	
-	.footer & {
-		width: 7rem;
-		padding: 1.2rem;
-		
-		img {
-			margin: 0;
-		}
-	}
 }
 
 /*********************
@@ -80,65 +65,28 @@ NAVIGATION STYLES
 	}
 }
 
-.socket {
-	display: block;
-	background: lighten($gray, 35%);
-	text-align: right;
-	font-size: 0.675rem;
-	padding: 0.75em 1em;
-}
-
-.socket-nav {
-	display: inline-block;
-	margin: 4px 0 0 0;
-	vertical-align: middle;
-	
-	> li {
-		> a {
-			color: $white;
-			margin: 0 1em;
-			outline: none !important;
-			
-			&:before {
-				content: "\007c";
-				display: inline-block;
-				margin-right: 2em;
-				color: $white !important;
-			}
-			
-			&:hover, &:focus {
-				color: $blue;
-			}
-		}
-		
-		&:first-child {
-			a:before {
-				content: '';
-				display: none;
-			}
-		}
-	}
-}
-
 .search-box {
 	display: inline-block;
 	vertical-align: middle;
-	margin-right: 1em;
+	margin: 0 1em 0 0;
 	
 	#s {
 		background: none;
 		color: $white;
-		border-bottom: 1px solid $white;
-		border-left: none;
-		border-top: none;
-		border-right: none;
 		outline: none;
 		padding: 0;
-		width: 190px;
-		font-size: 0.675rem;
+		font-size: 1rem;
+		border: none;
+		width: 75px;
+		@include transition(width 0.3s ease-in-out);
 		
 		@include placeholder {
 			color: $white;
+		}
+		
+		&:focus {
+			border-bottom: 1px solid $white;
+			width: 130px;
 		}
 	}
 	
@@ -154,33 +102,90 @@ NAVIGATION STYLES
 	}
 }
 
+.socket {
+	position: relative;
+	display: block;
+	width: 100%;
+	left: 0;
+	top: 0;
+	background: $gray;
+	text-align: right;
+	font-size: 1rem;
+	padding: 0.75em 1em;
+	z-index: 999;
+	
+	.home & {
+		position: absolute;
+		background: none;
+	}
+}
+
+.socket-nav {
+	display: inline-block;
+	margin: 10px 0;
+	vertical-align: middle;
+	
+	> li {
+		> a {
+			color: $white;
+			margin: 0 2em;
+			outline: none !important;
+			
+			&:hover, &:focus {
+				text-decoration: underline;
+			}
+		}
+		
+		&:first-child {
+			a:before {
+				content: '';
+				display: none;
+			}
+		}
+	}
+	
+	&.account-btn {
+		li {
+			background: url(../images/icon-account.png) no-repeat top left;
+			background-size: 16px;
+			padding-left: 26px;
+			
+			a {
+				margin: 0 4em 0 0;
+			}
+		}
+	}
+}
+
 .primary-nav {
 	position: relative;
-    padding-left: 18.5rem;
 	max-height: none;
 	background: none;
 	overflow: visible;
+	text-align: center;
+	background: $light-gray;
 
 	> li {
 		border: none;
-		padding: 0;
 		
 		> a {
-			color: $blue;
+			color: $gray;
 			outline: none;
-			padding: 1.5rem 1.75em;
-			padding-bottom: calc(1.5rem - 7px);
-			border-bottom: 7px solid $white;
-			font-size: 0.9em;
+			font-size: 1em;
+			border: none;
 			
-			&:hover,
-			&:focus {
-				color: $gray;
+			br {
+				display: block;
 			}
-			
-			&.active {
-				color: $gray;
-				border-color: $blue !important;
+		}
+		
+		&:hover,
+		&:focus,
+		&.current-product-parent,
+		&.current-menu-item,
+		&.current-product_cat-ancestor {
+			a {
+				color: $pink;
 			}
 		}
 
@@ -189,13 +194,8 @@ NAVIGATION STYLES
 			position: absolute;
 			overflow: visible;
 			background: rgba($blue, .9);
-			width: 100%;
-			width: calc(100% - 10rem);
-			height: 4.1rem;
 			opacity: 0;
 			visibility: hidden;
-			top: 3.9rem;
-			right: 200%;
 			margin: 0;
 			padding: 1.4rem 0 1rem 2.5rem;
 			text-align: left;
@@ -204,7 +204,6 @@ NAVIGATION STYLES
 			@include transition (all 1s ease-out);
 			
 			&.active {
-				right: 0%;
 				opacity: 1;
 				visibility: visible;
 			}
@@ -223,10 +222,6 @@ NAVIGATION STYLES
 					display: inline;
     				padding: 0;
 					border: none;
-					
-					br {
-						display: block;
-					}
 					
 					&:hover,
 					&:focus {
@@ -269,7 +264,7 @@ POSTS & CONTENT STYLES
 
 .featured-image {
 	width: 100%;
-    margin-left: auto;
+    margin: 0 auto;
 }
 
 .page-title {
@@ -298,10 +293,8 @@ LAYOUT & GRID STYLES
 *********************/
 
 .wrap {
-	width: 760px;
-	
-	&.entry-content {
-		max-width: 100%;
+	> div {
+		width: 760px;
 	}
 }
 
@@ -316,10 +309,6 @@ LAYOUT & GRID STYLES
 /*********************
 SIDEBARS & ASIDES
 *********************/
-
-.sidebar {
-	margin-top: 2.2em;
-}
 
 .widgettitle {
 	border-bottom: 2px solid #444;
@@ -348,8 +337,7 @@ FOOTER STYLES
 *********************/
 
 .footer {
-	padding: 2.5rem 4rem;
-	margin-top: 4rem;
+
 }
 
 .footer-links {

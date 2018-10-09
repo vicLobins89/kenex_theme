@@ -26,7 +26,7 @@
 			if ( $terms ) {
 				echo '<ul class="product-cats">';
 					foreach ( $terms as $term ) {
-						echo '<li class="category">';
+						echo '<li class="category ' . (get_queried_object_id() == $term->term_id ? 'current' : '') .'">';
 							echo '<a href="' .  esc_url( get_term_link( $term ) ) . '" class="' . $term->slug . '">';
 								echo $term->name;
 							echo '</a>';

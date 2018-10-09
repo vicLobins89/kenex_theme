@@ -11,31 +11,20 @@ html {
 }
 
 .wrap {
-	width: 930px;
+	> div {
+		width: 930px;
+	}
 }
 
 .header {
 	font-size: 1rem;
 }
 
-.logo {
-	width: 11rem;
-	height: 4rem;
-	
-	img {
-		margin: 0;
-	}
-}
-
 .primary-nav {
-	padding-left: 16.5rem;
 	
     > li {
 		ul.sub-menu,
 		ul.children {
-			width: calc(100% - 16.5rem);
-			height: 3.65rem;
-			top: 4.1rem;
 			padding: 1.2rem 0 1rem 2.5rem;
 
 			li {

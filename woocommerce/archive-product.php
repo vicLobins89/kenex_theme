@@ -44,6 +44,7 @@ do_action( 'woocommerce_before_main_content' );
 	do_action( 'woocommerce_archive_description' );
 	?>
 </header>
+<div class="loop-wrapper cf">
 <?php
 
 /**
@@ -103,6 +104,8 @@ if ( woocommerce_product_loop() ) {
  *
  * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
  */
-do_action( 'woocommerce_after_main_content' );
+do_action( 'woocommerce_after_main_content' ); ?>
 
-get_footer( 'shop' );
+</div>
+
+<?php get_footer( 'shop' );

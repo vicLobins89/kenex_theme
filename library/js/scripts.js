@@ -35,8 +35,13 @@ jQuery(document).ready(function($) {
 	
 	// Slick
 	$('.multiple-objects').slick({
+		dots: true,
 		infinite: true,
 		slidesToShow: 3,
-		slidesToScroll: 1
+		slidesToScroll: 3
+	});
+	
+	$('.woocommerce-product-gallery__wrapper a').click(function(e){
+		e.preventDefault();
 	});
 });

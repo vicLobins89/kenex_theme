@@ -51,7 +51,11 @@ img {
 }
 
 hr {
-	margin: 2.5rem 0;
+	margin: .5rem 0;
+	height: 1px;
+	width: 100%;
+	background: $light-gray;
+	border: none;
 }
 
 .aspect-ratio {
@@ -59,7 +63,7 @@ hr {
 	width: 100%;
 	height: 0;
 	padding-bottom: 56%;
-	margin: 2rem 0 0;
+	margin: 0;
 	
 	iframe {
 		position: absolute;
@@ -124,9 +128,6 @@ WORDPRESS BODY CLASSES
 .error404 {}                      /* 404 page */
 
 .single {
-	.wrap.post {
-		max-width: 95%;
-	}
 }
 
 //.blog, .archive, .single {
@@ -136,11 +137,6 @@ WORDPRESS BODY CLASSES
 LAYOUT & GRID STYLES
 *********************/
 
-.wrap {
-	width: 100%;
-	margin: 0 auto;
-}
-
 .flex {
 	display: inline-block;
 	display: -webkit-box;
@@ -149,8 +145,6 @@ LAYOUT & GRID STYLES
 	display: flex;
 	@include prefix(flex-direction, column, webkit ms);
 	@include prefix(justify-content, space-around, webkit ms);
-	padding: 0;
-	line-height: 30px;
 
 	.flex-panel {
 		display: inline-block;
@@ -172,9 +166,312 @@ LAYOUT & GRID STYLES
 	}
 }
 
+.wrap, .wrap > div {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.row {
+	&.wrap {
+		
+	}
+	
+	&.full {
+		padding: 0;
+		
+		[class*="col-"] {
+			padding: 0;
+		}
+	}
+	
+	&.gradient {
+		> div {
+			@extend .flex;
+		}
+		
+		h1, h2, h3, h4, h5, h6, h7, p, li, span, a {
+			color: $white;
+		}
+		
+		h2 {
+			background: url(../images/flair-white.png) no-repeat left bottom;
+			background-size: 5.5rem;
+			padding-bottom: 1rem;
+    		margin-bottom: 1.15rem;
+		}
+		
+		[class*="col-"] {
+			padding: 0;
+			float: none;
+			display: inline-block;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-flex: 1;
+			@include prefix(flex-direction, column, webkit ms);
+			
+			p, img {
+				padding: 0;
+				margin: 0;
+			}
+			
+			p {
+				font-size: 1.5rem;
+			}
+			
+			a {
+				background: url(../images/icon-next.png) no-repeat center right;
+				background-size: 1rem;
+				padding: 6px 30px 3px 0;
+				@include transition(all 0.2s ease-in-out);
+				
+				&:hover {
+					padding-right: 40px;
+				}
+			}
+			
+			&:first-child {
+				@include css-gradient(darken($pink, 10),$pink);
+				padding: 3rem;
+			}
+			
+			&[class*="col-"]:not(.col-12):last-child {
+				font-size: 0;
+				
+				p {
+					font-size: 0;
+				}
+			}
+		}
+		
+		.col-12 {
+			p {
+				font-size: 2em;
+				font-weight: bold;
+				width: 65%;
+				margin: 2rem auto;
+				line-height: 1.3;
+			}
+		}
+	}
+	
+	&.alt {
+		padding-bottom: 0;
+		
+		~ .row {
+			padding-bottom: 0;
+			padding-top: 0;
+		}
+		
+		.col-12 {
+			padding: 0;
+			
+			div {
+				width: calc(70% - 2rem);
+    			float: left;
+			}
+		}
+		
+		p, img {
+			margin: 0;
+		}
+		
+		h2 {
+			margin-top: 2rem;
+			background: url(../images/flair-pink.png) no-repeat left bottom;
+			background-size: 6rem;
+    		padding-bottom: 1rem;
+		}
+		
+		img {
+			width: 30%;
+		}
+		
+		&:nth-child(odd) {
+			.col-12 {
+				padding-right: 3rem;
+			}
+			
+			img {
+				float: left;
+				margin-right: 2rem;
+			}
+		}
+		
+		&:nth-child(even) {
+			.col-12 {
+				padding-left: 3rem;
+			}
+			
+			img {
+				float: right;
+				margin-left: 2rem;
+			}
+		}
+		
+		&:nth-child(1), &:nth-child(4) {
+			.col-12 {
+				background: lighten($light-gray, 10%);
+				padding-right: 3rem;
+				padding-left: 0;
+			}
+			
+			img {
+				float: left;
+				margin-right: 2rem;
+				margin-left: 0;
+			}
+		}
+		
+		&:nth-child(2) {
+			.col-12 {
+				background: $gray;
+				color: $white;
+			}
+		}
+		
+		&:nth-child(4) {
+			.col-12 {
+				background: $light-gray;
+			}
+		}
+		
+		&:nth-child(5) {
+			.col-12 {
+				background: lighten($light-gray, 10%);
+				padding-left: 3rem;
+				padding-right: 0;
+			}
+			
+			img {
+				float: right;
+				margin-left: 2rem;
+				margin-right: 0;
+			}
+		}
+	}
+	
+	&.products-slider {
+		padding-top: 0;
+		padding-bottom: 0;
+		
+		.woocommerce.tax-product_cat & {
+			padding-top: 3rem;
+			padding-bottom: 3rem;
+			
+			h2 {
+				margin: 0 0 1rem 4rem;
+				font-size: 2.15em;
+			}
+		}
+	}
+}
+
 .products {
 	&[class*="col-"] {
 		clear: none !important;
+	}
+}
+
+.multiple-objects {
+	padding: 0 3rem;
+	
+	.product {
+		position: relative;
+		margin: 1rem;
+		opacity: 0.8;
+		@include transition(opacity 0.2s ease-in-out);
+		
+		&:hover {
+			opacity: 1;
+		}
+		
+		.post-thumb {
+			display: block;
+		}
+		
+		.post-title {
+			position: absolute;
+			width: 100%;
+			left: 0;
+			bottom: 0;
+			background: rgba(255,255,255,0.7);
+			padding: 1rem;
+			
+			&:hover, &:focus {
+				color: inherit;
+			}
+		}
+		
+		h3 {
+			background: url(../images/flair-pink.png) no-repeat left bottom;
+			background-size: 6rem;
+			padding-bottom: 1.25rem;
+			margin-bottom: 1.15rem;
+		}
+	}
+	
+	.slick-arrow {
+		position: absolute;
+		top: 50%;
+		margin-top: -13px;
+		width: 25px;
+		height: 35px;
+		font-size: 0;
+		padding: 0;
+		color: transparent;
+		border: none;
+		outline: none !important;
+		background-size: 50px !important;
+		@include transition(all 0.2s ease-in-out);
+		
+		&.slick-prev {
+			background: url(../images/arrows.png) no-repeat 0 -35px;
+			left: 10px;
+			&:hover {
+				left: 0;
+			}
+		}
+		
+		&.slick-next {
+			background: url(../images/arrows.png) no-repeat -25px -35px;
+			right: 10px;
+			&:hover {
+				right: 0;
+			}
+		}
+	}
+	
+	.slick-dots {
+		position: absolute;
+		margin: 0;
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%, 0);
+		
+		li {
+			display: inline-block;
+			margin: 0;
+			padding: 0;
+			
+			button {
+				font-size: 0;
+				color: transparent;
+				border: 2px solid $pink;
+				border-radius: 50%;
+				width: 15px;
+				height: 15px;
+				padding: 0;
+				margin: 0 3px;
+				outline: none !important;
+			}
+			
+			&.slick-active button,
+			&:hover button {
+				background: $pink;
+			}
+		}
 	}
 }
 
@@ -209,6 +506,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 	a {
 		text-decoration: none;
 	}
+	
+	&:first-of-type {
+		margin-top: 0;
+	}
 }
 
 h1, .h1 {
@@ -224,7 +525,6 @@ h2, .h2 {
 
 h3, .h3 {
 	font-size: 1.75em;
-	font-weight: normal;
 	margin: 1em 0 0.5em;
 }
 
@@ -246,7 +546,11 @@ p, .p {
 }
 
 .copy-l {
-	font-size: 120% !important;
+	font-size: 150% !important;
+}
+
+.copy-xl {
+	font-size: 180% !important;
 }
 
 .narrow-para {
@@ -266,6 +570,7 @@ HEADER STYLES
 *********************/
 
 .header {
+	background: none;
 	font-size: 1rem;
 	position: fixed;
 	width: 100%;
@@ -296,15 +601,19 @@ HEADER STYLES
 }
 
 .logo {
-	position: absolute;
+	position: relative;
 	z-index: 10;
-	width: 11rem;
-	height: 4rem;
+	width: 130px;
 	display: block;
     float: left;
-	background: $white;
 	font-size: 0;
-	margin: 0;
+	margin: 0 3rem;
+	
+	.home & {
+		position: absolute;
+		width: 13rem;
+		margin: 1.25rem 3rem;
+	}
 	
 	img {
 		max-width: 100%;
@@ -313,12 +622,6 @@ HEADER STYLES
 
 	a {
 		color: $black;
-	}
-	
-	.footer & {
-		width: 7rem;
-		height: auto;
-		padding: 1.2rem;
 	}
 }
 
@@ -349,7 +652,7 @@ NAVIGATION STYLES
 .primary-nav {
 	position: fixed;
 	margin: 0 auto;
-	padding-top: 0;
+	padding: 1.5rem 0;
 	text-align: center;
 	max-height: 0px;
 	max-height: 0vh;
@@ -361,23 +664,161 @@ NAVIGATION STYLES
 	
 	li {
 		a {
-			font-weight: 500;
+			font-weight: 900;
 			font-size: 1.4em;
 			color: $white;
 		}
 	}
 	
 	> li {
-		padding: 0 2.5rem;
+		vertical-align: top;
+		cursor: pointer;
+		position: relative;
+		
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 50%;
+    		transform: translate(-50%, 0);
+		}
+		
+		&.current-product-parent,
+		&.current-menu-item,
+		&.current-product_cat-ancestor {
+			&:after {
+				position: absolute;
+				content: '';
+				width: 0; 
+				height: 0;
+				left: 50%;
+				bottom: -3rem;
+				transform: translate(-50%, 0);
+				border-left: 1.5rem solid transparent;
+				border-right: 1.5rem solid transparent;
+				border-top: 1.5rem solid $light-gray;
+			}
+		}
+		
+		&.icon-xray_shielding {
+			&:before {
+				background: url(../images/icon-xray_shielding.png) no-repeat 0 0;
+				background-size: 55px;
+				width: 55px;
+				height: 64px;
+			}
+			
+			&:hover:before,
+			&.current-product-parent:before,
+			&.current-menu-item:before,
+			&.current-product_cat-ancestor:before {
+				background-position: 0 -64px;
+			}
+		}
+		
+		&.icon-imaging_accessories {
+			&:before {
+				background: url(../images/icon-imaging_accessories.png) no-repeat 0 0;
+				background-size: 60px;
+				width: 60px;
+				height: 60px;
+				top: 4px;
+			}
+			
+			&:hover:before,
+			&.current-product-parent:before,
+			&.current-menu-item:before,
+			&.current-product_cat-ancestor:before {
+				background-position: 0 -60px;
+			}
+		}
+		
+		&.icon-operating_lamps {
+			&:before {
+				background: url(../images/icon-operating_lamps.png) no-repeat 0 0;
+				background-size: 45px;
+				width: 45px;
+				height: 69px;
+			}
+			
+			&:hover:before,
+			&.current-product-parent:before,
+			&.current-menu-item:before,
+			&.current-product_cat-ancestor:before {
+				background-position: 0 -69px;
+			}
+		}
+		
+		&.icon-protective_clothing {
+			&:before {
+				background: url(../images/icon-protective_clothing.png) no-repeat 0 0;
+				background-size: 55px;
+				width: 55px;
+				height: 57px;
+				top: 6px;
+			}
+			
+			&:hover:before,
+			&.current-product-parent:before,
+			&.current-menu-item:before,
+			&.current-product_cat-ancestor:before {
+				background-position: 0 -57px;
+			}
+		}
+		
+		&.icon-suspension_systems {
+			&:before {
+				background: url(../images/icon-suspension_systems.png) no-repeat 0 0;
+				background-size: 60px;
+				width: 60px;
+				height: 58px;
+				top: 4px;
+			}
+			
+			&:hover:before,
+			&.current-product-parent:before,
+			&.current-menu-item:before,
+			&.current-product_cat-ancestor:before {
+				background-position: 0 -58px;
+			}
+		}
+		
+		&.icon-bespoke {
+			&:before {
+				background: url(../images/icon-bespoke.png) no-repeat 0 0;
+				background-size: 55px;
+				width: 55px;
+				height: 65px;
+			}
+			
+			&:hover:before,
+			&.current-product-parent:before,
+			&.current-menu-item:before,
+			&.current-product_cat-ancestor:before {
+				background-position: 0 -65.5px;
+			}
+			
+			&.current-product-parent,
+			&.current-menu-item,
+			&.current-product_cat-ancestor {
+				&:after {
+					bottom: -4rem;
+				}
+			}
+		}
 		
 		> a {
 			position: relative;
+			padding: 5em 3em 0;
 			display: block;
 			text-decoration: none;
-			padding: 1.35rem 0 1rem;
-			text-align: left;
+			text-align: center;
 			border-bottom: 1px solid $white;
 			@include transition(all 0.2s ease-in-out);
+			
+			br {
+				display: none;
+			}
 		}
 		
 		&.mobile-links {
@@ -417,10 +858,6 @@ NAVIGATION STYLES
 					text-align: left;
 					border-bottom: 1px solid $white;
 					
-					br {
-						display: none;
-					}
-					
 					&:hover,
 					&:focus {						
 						text-decoration:none;
@@ -451,7 +888,32 @@ POSTS & CONTENT STYLES
     margin-left: -85%;
 	position: relative;
 	overflow: hidden;
-	padding-bottom: 2rem;
+	font-size: 0;
+}
+
+.hero-title {
+	position: absolute;
+	font-size: 1rem;
+	bottom: 0;
+	left: 0;
+	margin: 3.75rem 3rem;
+	z-index: 999;
+	color: $white;
+	
+	h1 {
+		font-size: 5.5em;
+    	margin: 0 0 20px;
+    	padding-bottom: 8px;
+		background: url(../images/flair-white.png) no-repeat left bottom;
+		background-size: 1em;
+	}
+	
+	p {
+		max-width: 40%;
+		font-size: 1.85em;
+		line-height: 1.2;
+    	margin: 0;
+	}
 }
 
 .page-title {
@@ -462,7 +924,6 @@ POSTS & CONTENT STYLES
 		margin: 0;
 		font-size: 4.5em;
 		line-height: 1;
-		font-family: $condensed;
 		text-transform: uppercase;
 	}
 
@@ -517,8 +978,15 @@ POSTS & CONTENT STYLES
 	text-align: center;
 }
 
+.entry-content:not(.full) {
+	> div {
+		max-width: 1800px;
+    	margin: auto;
+	}
+}
+
 .entry-content {
-	padding: 2rem;
+	padding: 1rem 3rem;
 	font-size: .9rem;
 
 	ul, ol, table, dl {}
@@ -534,9 +1002,26 @@ POSTS & CONTENT STYLES
 		margin-bottom: 2em;
 
 		li {
+			font-size: 1.15em;
 			margin-bottom: .5em;
 			padding-left: 1em;
 			list-style-type: none;
+		}
+	}
+	
+	.list {
+		margin-top: 2.5em;
+		
+		&.list-2col {
+			@include prefix(columns, 2, webkit moz);
+		}
+		
+		&.list-icons {
+			li {
+				padding-left: 1.85em;
+				margin-bottom: 2.5em;
+				background-size: 1.25em !important;
+			}
 		}
 	}
 
@@ -940,39 +1425,94 @@ COMMENT FORM STYLES
 SIDEBARS & ASIDES
 *********************/
 
-.sidebar {}
+.sidebar {
+	padding: 0;
 
-	.widgettitle {}
+.product-cats {
+	padding: 0;
+	margin: 0;
 
-	.widget {
+	.category {
+		padding: 1.5rem 0;
+		margin: 0;
+		max-width: 60%;
+		border-bottom: 1px solid lighten($gray, 15%);
 
-		ul {
-
-			li {
-
-				&:first-child {}
-
-				&:last-child {}
-
-				a {}
-
-				/* deep nesting */
-				ul {}
-
+		&:hover, &:focus, &.current {
+			a {
+				color: $pink;
 			}
+		}
+
+		&:first-child {
+			padding-top: 0;
+		}
+	}
+}
+}
+
+.widgettitle {}
+
+.widget {
+
+	ul {
+
+		li {
+
+			&:first-child {}
+
+			&:last-child {}
+
+			a {}
+
+			/* deep nesting */
+			ul {}
 
 		}
 
 	}
 
-	.no-widgets {
-		background-color: $white;
-		padding: 1.5em;
-		text-align: center;
-		border: 1px solid $border-color;
-		border-radius: 2px;
-		margin-bottom: 1.5em;
+}
+
+.no-widgets {
+	background-color: $white;
+	padding: 1.5em;
+	text-align: center;
+	border: 1px solid $border-color;
+	border-radius: 2px;
+	margin-bottom: 1.5em;
+}
+
+.bespoke-message {
+	position: relative;
+	
+	.widget {
+		margin: 0;
+		padding: 0;
+		
+		&.widget_text {
+			position: absolute;
+			width: 70%;
+			left: 50%;
+			margin: 5rem 0 0 -35%;
+			color: $white;
+			
+			h3 {
+				font-size: 2.25em;
+			}
+			
+			p {
+				font-size: 2em;
+    			line-height: 1.3;
+				margin: .5rem 0;
+			}
+		}
+		
+		&.widget_media_image {
+			font-size: 0;
+		}
 	}
+}
 
 /*********************
 FOOTER STYLES
@@ -980,12 +1520,29 @@ FOOTER STYLES
 
 .footer {
 	clear: both;
-	padding: 0;
-	background: $blue;
+	padding: 1.25rem 3rem;
+	margin-top: 2rem;
+	background: $gray;
 	position: relative;
 	
 	a, p, li {
 		color: $white;
+	}
+	
+	.widget {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.col-6 {
+		padding: 0;
+	}
+	
+	.footer-right {
+		p {
+			width: 48%;
+			float: left;
+		}
 	}
 }
 
@@ -1043,24 +1600,345 @@ FOOTER STYLES
 WOOCOMMERCE
 *********************/
 
-.woocommerce-table--order-details {
-	thead {
-		th.product-total {
-			display: none;
-		}
+.woocommerce-product-gallery__wrapper a {
+	cursor: default !important;
+}
+
+.woocommerce.single-product,
+.woocommerce.tax-product_cat {
+	.entry-content {
+		padding-bottom: 0;
 	}
 	
-	tfoot {
-		tr {
-			&:nth-child(1), &:nth-child(2) {
+	.footer {
+		margin-top: 0;
+	}
+}
+
+.woocommerce.post-type-archive {
+	.woocommerce-products-header {
+		h1 {
+			&.page-title {
 				display: none;
 			}
 		}
 	}
 }
 
-.woocommerce-checkout-payment {
-	.wc_payment_methods {
-		display: none;
+.woocommerce.tax-product_cat {
+	.woocommerce-products-header {
+		h1 {
+			font-size: 3em;
+    		margin: .5rem 0 2rem;
+		}
+	}
+	
+	.loop-wrapper {
+		background: lighten($light-gray, 5%);
+		width: calc(100% + 6rem);
+		margin-left: -3rem;
+		padding: 3rem;
+	}
+	
+	#container .woocommerce-breadcrumb {
+		margin-bottom: 0;
+	}
+}
+
+.woocommerce {
+	table.shop_table {
+		border-radius: 0;
+	}
+}
+
+.woocommerce #container {
+	.woocommerce-breadcrumb {
+		margin: 0 0 2rem;
+		color: $pink;
+		
+		a {
+			color: $gray;
+		}
+	}
+	
+	ul.products {
+		.woocommerce-LoopProduct-link {
+			display: block;
+			position: relative;
+			
+			img {
+				margin-bottom: 0;
+			}
+			
+			.shop-loop-title {
+				padding: 1rem;
+				background: $white;
+				
+				.woocommerce-loop-product__title {
+					font-size: 1.35em;
+					color: $black;
+					background: url(../images/flair-pink.png) no-repeat left bottom;
+					background-size: 5rem;
+					padding-bottom: 1.15rem;
+					margin-bottom: 1rem;
+				}
+				
+				p {
+					font-size: 1em;
+				}
+			}
+		}
+	}
+	
+	div.product {
+		.product_title {
+			font-size: 2.75em;
+		}
+		
+		div.images {
+			.woocommerce-product-gallery__image {
+				&:nth-child(n+2) {
+					width: 49%;
+					margin-right: 2%;
+				}
+				
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+		
+		.sku {
+			margin: 0;
+			font-size: 1.75em;
+			background: url(../images/flair-gray.png) no-repeat left bottom;
+			background-size: 100px;
+			padding-bottom: 1rem;
+		}
+		
+		form.cart {
+			.variations {
+				td.label {
+					width: 80px;
+				}
+			}
+		}
+		
+		.quantity {
+			label {
+				width: auto;
+				height: auto;
+				position: relative !important;
+				display: inline-block;
+				font-weight: bold;
+			}
+			
+			.qty {
+				display: inline-block;
+				margin-right: 10px;
+				margin-left: 10px;
+			}
+		}
+		
+		.product-extras-wrapper {
+			margin-bottom: 2rem;
+			border-bottom: 1px solid $light-gray;
+			
+			.extras-description {
+				margin-bottom: 2rem;
+			}
+			
+			.extras-downloads,
+			.extras-accreditations {
+				width: 50%;
+				padding-top: 2rem;
+				padding-bottom: 2rem;
+				border-top: 1px solid $light-gray;
+			}
+			
+			&.full-width {
+				.extras-downloads,
+				.extras-accreditations {
+					width: 100%;
+				}
+			}
+			
+			.extras-downloads {
+				float: left;
+			}
+			
+			.extras-accreditations {
+				float: right;
+				border-left: 1px solid $light-gray;
+				padding-left: 2rem;
+			}
+			
+			.product-downloads {
+				font-size: 1.15em;
+			}
+			
+			.product-accreditations {
+				margin-bottom: 0;
+				padding-left: 0;
+				
+				li {
+					display: inline-block;
+					list-style-type: none;
+					
+					img {
+						max-width: 100px;
+						margin: 0;
+					}
+				}
+			}
+			
+			h2 {
+				font-size: 2.15em;
+			}
+			
+			ul {
+				padding-left: 1.15em;
+
+				li {
+					padding-left: 0;
+					list-style: disc;
+				}
+			}
+		}
+		
+		.product-video {
+			max-width: 70%;
+			margin: 2rem auto;
+		}
+		
+		.upsells {
+			background: darken($gray, 10%);
+			width: calc(100% + 6rem);
+    		margin-left: -3rem;
+			padding: 3rem;
+			
+			> h2 {
+				margin: 0 0 1rem 4rem;
+				color: $white;
+				font-size: 2.15em;
+			}
+			
+			.multiple-objects .slick-arrow.slick-next {
+				background: url(../images/arrows.png) no-repeat -25px 0;
+			}
+			
+			.multiple-objects .slick-arrow.slick-prev {
+				background: url(../images/arrows.png) no-repeat 0 0;
+			}
+			
+			.woocommerce-LoopProduct-link {
+				position: relative;
+				display: block;
+				
+				.shop-loop-title {
+					position: absolute;
+					width: 100%;
+					left: 0;
+					bottom: 0;
+					padding: 1rem;
+					background: rgba(255,255,255,0.8);
+					
+					h2 {
+						font-size: 1.75em;
+						margin-bottom: 1rem;
+						padding-bottom: 1rem;
+						background: url(../images/flair-pink.png) no-repeat left bottom;
+						background-size: 2.7em;
+						
+						span {
+							display: none;
+						}
+					}
+					
+					p {
+						margin-bottom: 0;
+					}
+				}
+			}
+			
+			.slick-dots {
+				bottom: -27px;
+				
+				li button {
+					border: none;
+				}
+			}
+		}
+	}
+}
+
+.woocommerce-cart {
+	.woocommerce {
+		table.cart {
+			.product-thumbnail {
+				width: 130px;
+				padding: 18px;
+				
+				a {
+					display: block;
+					font-size: 0;
+				}
+			}
+			
+			.product-remove, img {
+				width: 100px;
+			}
+		} 
+	}
+}
+
+.woocommerce #respond input#submit.alt, 
+.woocommerce a.button.alt, 
+.woocommerce button.button.alt, 
+.woocommerce input.button.alt,
+.woocommerce #respond input#submit, 
+.woocommerce a.button, 
+.woocommerce button.button, 
+.woocommerce input.button {
+	border-radius: 0;
+	background: $pink;
+	padding: 0.75rem 2.5rem;
+	border: 2px solid $pink;
+	color: $white;
+	@include transition(all 0.3s ease-in-out);
+
+	&:hover {
+		color: $pink;
+		background: $white;
+	}
+
+	&:disabled {
+		color: $white !important;
+	}
+}
+
+.woocommerce-checkout #payment ul.payment_methods {
+	display: none;
+}
+
+#add_payment_method #payment, 
+.woocommerce-cart #payment, 
+.woocommerce-checkout #payment {
+	border-radius: 0;
+}
+
+.woocommerce-info {
+    border-top-color: $pink;
+	
+	&:before {
+		color: $pink;
+	}
+}
+
+.woocommerce-order .woocommerce-table__product-name {
+	img {
+		width: 110px;
+		display: block;
+		margin: 10px 0;
 	}
 }
