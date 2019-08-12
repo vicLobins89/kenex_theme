@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( $upsells ) : ?>
 
-	<section class="up-sells upsells products">
+	<section class="up-sells upsells products"><div class="cf">
 
 		<h2><?php esc_html_e( 'Complete the kit', 'woocommerce' ) ?></h2>
 
@@ -45,7 +45,7 @@ if ( $upsells ) : ?>
 
 		<?php //woocommerce_product_loop_end(); ?>
 
-	</section>
+	</div></section>
 
 <?php endif;
 

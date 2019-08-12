@@ -4,7 +4,7 @@
 
 				<div id="inner-content" class="cf">
 
-						<div id="main" class="col-8 cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+						<div id="main" class="col-9 cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 							
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 

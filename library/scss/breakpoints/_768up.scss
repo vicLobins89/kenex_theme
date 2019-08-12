@@ -21,10 +21,6 @@ body {}
 FONT STYLES
 *********************/
 
-p, .p {
-	font-size: 1.15em;
-}
-
 .narrow-para {
 	max-width: 60%;
 }
@@ -34,17 +30,18 @@ HEADER STYLES
 *********************/
 
 .header {
-	position: relative;
+    position: relative;
 	font-size: 0.8rem;
-}
-
-#inner-header {
-	position: relative;
+    padding: 0 3rem;
 }
 
 .logo {
+    position: relative;
 	top: 0;
 	left: 0;
+	margin: 1.2rem 0 0;
+    float: left;
+    width: 13rem;
 }
 
 /*********************
@@ -62,77 +59,47 @@ NAVIGATION STYLES
 		a {
 			text-decoration: none;
 		}
-	}
-}
-
-.search-box {
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0 1em 0 0;
-	
-	#s {
-		background: none;
-		color: $white;
-		outline: none;
-		padding: 0;
-		font-size: 1rem;
-		border: none;
-		width: 75px;
-		@include transition(width 0.3s ease-in-out);
-		
-		@include placeholder {
-			color: $white;
-		}
-		
-		&:focus {
-			border-bottom: 1px solid $white;
-			width: 130px;
-		}
-	}
-	
-	button {
-		top: 1px;
-		left: -2px;
-		position: relative;
-		border: none;
-		outline: none;
-		background: none;
-		padding: 0;
-		color: $white;
+        
+        &:first-child {
+            margin-left: 0;
+        }
+        
+        &:last-child {
+            margin-right: 0;
+        }
 	}
 }
 
 .socket {
 	position: relative;
 	display: block;
-	width: 100%;
+	float: right;
 	left: 0;
 	top: 0;
-	background: $gray;
 	text-align: right;
-	font-size: 1rem;
-	padding: 0.75em 1em;
+	font-size: .8rem;
+	padding: 5px 0 0 0;
 	z-index: 999;
-	
-	.home & {
-		position: absolute;
-		background: none;
-	}
+	max-height: 100px;
+	overflow: hidden;
+	@include transition(all 0.3s ease-in-out);
 }
 
-.socket-nav {
-	display: inline-block;
-	margin: 10px 0;
-	vertical-align: middle;
+.socket {
+    .socket-nav {
+        display: inline-block;
+        margin: 10px 0;
+        vertical-align: middle;
+    }
 	
-	> li {
+	li {
 		> a {
-			color: $white;
-			margin: 0 2em;
+			color: $gray;
+			margin: 0 1.5em;
 			outline: none !important;
 			
 			&:hover, &:focus {
-				text-decoration: underline;
+				color: $pink;
 			}
 		}
 		
@@ -143,36 +110,48 @@ NAVIGATION STYLES
 			}
 		}
 	}
-	
-	&.account-btn {
-		li {
-			background: url(../images/icon-account.png) no-repeat top left;
-			background-size: 16px;
-			padding-left: 26px;
-			
-			a {
-				margin: 0 4em 0 0;
-			}
-		}
-	}
+}
+
+.rhs-links a:hover {
+    color: $pink;
 }
 
 .primary-nav {
 	position: relative;
+    float: right;
+    width: auto;
 	max-height: none;
 	background: none;
 	overflow: visible;
-	text-align: center;
-	background: $light-gray;
+	text-align: right;
+	background: $white !important;
+    padding: 0;
+    
+    &:before {
+        position: absolute;
+        top: -1px;
+        left: 15px;
+        width: 300%;
+        height: 1px;
+        background: $gray;
+    }
+	
+	a {
+		color: $gray !important;
+	}
 
 	> li {
 		border: none;
+		margin: 0 10px;
+		font-size: .8em;
 		
 		> a {
 			color: $gray;
 			outline: none;
 			font-size: 1em;
 			border: none;
+			padding: 15px 0 10px 3.5rem;
+			text-align: left;
 			
 			br {
 				display: block;
@@ -185,7 +164,7 @@ NAVIGATION STYLES
 		&.current-menu-item,
 		&.current-product_cat-ancestor {
 			a {
-				color: $pink;
+				color: $pink !important;
 			}
 		}
 
@@ -272,7 +251,7 @@ POSTS & CONTENT STYLES
 }
 
 .entry-content {
-	padding: 3rem;
+	padding: 2rem 3rem;
 	font-size: 1rem;
 	
 	ul {
@@ -285,6 +264,11 @@ POSTS & CONTENT STYLES
 			}
 		}
 	}
+}
+
+.multiple-objects .product .post-title {
+	min-height: 13rem;
+	font-size: .75rem;
 }
 
 

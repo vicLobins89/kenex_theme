@@ -1,12 +1,12 @@
 <?php get_header(); ?>
 
-			<div id="content" class="push">
+			<div id="content" class="push search">
 
 				<div id="inner-content" class="cf">
 					
 					<h1 class="archive-title"><span><?php _e( 'Search Results for:', 'bonestheme' ); ?></span> <?php echo esc_attr(get_search_query()); ?></h1>
 
-					<div id="main" class="col-8 cf" role="main">
+					<div id="main" class="col-9 cf" role="main">
 
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 

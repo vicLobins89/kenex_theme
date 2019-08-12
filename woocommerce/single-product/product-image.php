@@ -27,6 +27,7 @@ global $product;
 
 $columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 2 );
 $post_thumbnail_id = $product->get_image_id();
+$attachment_ids = $product->get_gallery_image_ids();
 $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_classes', array(
 	'woocommerce-product-gallery',
 	'woocommerce-product-gallery--' . ( has_post_thumbnail() ? 'with-images' : 'without-images' ),
@@ -38,14 +39,24 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 	<figure class="woocommerce-product-gallery__wrapper">
 		<?php
 		if ( has_post_thumbnail() ) {
-			$html  = wc_get_gallery_image_html( $post_thumbnail_id, true );
+			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
+            if( $attachment_ids ) {
+                foreach ( $attachment_ids as $attachment_id ) {
+                    $video_link = get_post_meta( $attachment_id, '_custom_field', true );
+                    if( $video_link ) {
+                        $html .= '<div data-video="'.$video_link.'">'.wc_get_gallery_image_html( $attachment_id , true).'</div>';
+                    } else {
+                        $html .= '<div>'.wc_get_gallery_image_html( $attachment_id , true).'</div>';
+                    }
+                }
+            }
 		} else {
 			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
 			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src() ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
 			$html .= '</div>';
 		}
 
-		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id );
+		echo '<div class="multiple-objects slider-for main-gallery">'.apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ).'</div>';
 
 		do_action( 'woocommerce_product_thumbnails' );
 		?>

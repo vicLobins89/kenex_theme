@@ -43,48 +43,50 @@
 		<div id="container">
 
 			<header class="header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
-				
-				<div class="socket cf">
+
+				<div id="inner-header" class="cf">
+					
 					<?php
-					if($options['logo']){
-						echo '<a class="logo" href="'. home_url() .'"><img src="'. $options['logo'] .'" alt="'. get_bloginfo('name') .'" /></a>';
+					if( $options['logo'] ){
+						echo '<a class="logo" href="'. home_url() .'"><img src="'. $options['logo_alt'] .'" alt="'. get_bloginfo('name') .'" /></a>';
 					} else {
 						echo '<p class="logo" class="h1" itemscope itemtype="http://schema.org/Organization"><a href="'. home_url() .'">'. get_bloginfo('name') .'</a></p>';
 					}
 					?>
-					
-					<?php
-					if( is_user_logged_in() ) {
-						echo '<ul class="nav socket-nav cf account-btn"><li class="menu-item menu-item-type-post_type menu-item-object-page">';
-						echo '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id') ).'">My Account</a>';
-						echo '</li></ul>';
-					} else {
-						echo '<ul class="nav socket-nav cf account-btn"><li class="menu-item menu-item-type-post_type menu-item-object-page">';
-						echo '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id') ).'">Log In</a>';
-						echo '</li></ul>';
-					}
-					?>
-					<div class="search-box"><?php get_search_form(); ?></div>
-					<?php wp_nav_menu(array(
-							 'container' => true,
-							 'menu' => __( 'Socket Links', 'bonestheme' ),
-							 'menu_class' => 'nav socket-nav cf',
-							 'theme_location' => 'socket-nav'
-					)); ?>
-				</div>
-				
-				<?php // HERO AREA ?>
-				<?php if( has_post_thumbnail() && is_page() ) : ?>
-				<div class="featured-image">
-					<?php the_post_thumbnail('full'); ?>
-					<div class="hero-title">
-						<h1><?php the_title(); ?></h1>
-						<?php the_excerpt(); ?>
-					</div>
-				</div>
-				<?php endif; ?>
+                    
+                    <div class="socket cf">
+                        <?php
+                        wp_nav_menu(array(
+                            'container' => true,
+                            'menu' => __( 'Socket Links', 'bonestheme' ),
+                            'menu_class' => 'nav socket-nav cf',
+                            'theme_location' => 'socket-nav'
+                        ));
+                        
+                        if( is_user_logged_in() ) {
+                            echo '<ul class="nav socket-nav cf account-btn"><li class="menu-item menu-item-type-post_type menu-item-object-page">';
+                            echo '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id') ).'">My account</a>';
+                            echo '</li></ul>';
+                        } else {
+                            echo '<ul class="nav socket-nav cf account-btn"><li class="menu-item menu-item-type-post_type menu-item-object-page">';
+                            echo '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id') ).'">Log in</a>';
+                            echo '</li></ul>';
+                        }
+                        ?>
 
-				<div id="inner-header" class="cf">
+                        <div class="basket-box">
+                        <?php 
+                            echo '<div class="rhs-links">';
+                            echo '<a href="'.wc_get_cart_url().'" class="menu-item basket basket-n-w" title="View your shopping cart">';
+                            if( WC()->cart->get_cart_contents_count() !== 0 ) {
+                            echo '<span class="basket-n">'.sprintf ( _n( '%d', '%d', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ).'</span>';
+                            }
+                            echo 'Quote basket</a>';
+                            echo '</div>';
+                        ?>
+                        </div>
+                        <div class="search-box"><?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?></div>
+                    </div>
 					
 					<a class="menu-button" title="Main Menu"></a>
 					<nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">

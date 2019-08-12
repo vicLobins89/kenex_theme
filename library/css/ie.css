@@ -26,6 +26,9 @@ Stylesheet: Variables
 COLORS
 Choosing your colors http://0to255.com/
 *********************/
+/*********************
+WIDTHS
+*********************/
 /******************************************************************
 Site Name: Honey
 Author: Vic Lobins
@@ -175,9 +178,6 @@ html {
 /*********************
 FONT STYLES
 *********************/
-p, .p {
-  font-size: 1.15em; }
-
 .narrow-para {
   max-width: 60%; }
 
@@ -186,14 +186,16 @@ HEADER STYLES
 *********************/
 .header {
   position: relative;
-  font-size: 0.8rem; }
-
-#inner-header {
-  position: relative; }
+  font-size: 0.8rem;
+  padding: 0 3rem; }
 
 .logo {
+  position: relative;
   top: 0;
-  left: 0; }
+  left: 0;
+  margin: 1.2rem 0 0;
+  float: left;
+  width: 13rem; }
 
 /*********************
 NAVIGATION STYLES
@@ -205,97 +207,79 @@ NAVIGATION STYLES
   display: inline-block; }
   .nav .menu-item a {
     text-decoration: none; }
-
-.search-box {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 1em 0 0; }
-  .search-box #s {
-    background: none;
-    color: #fff;
-    outline: none;
-    padding: 0;
-    font-size: 1rem;
-    border: none;
-    width: 75px;
-    -webkit-transition: width 0.3s ease-in-out;
-    transition: width 0.3s ease-in-out; }
-    .search-box #s::-webkit-input-placeholder {
-      color: #fff; }
-    .search-box #s:-moz-placeholder {
-      color: #fff; }
-    .search-box #s::-moz-placeholder {
-      color: #fff; }
-    .search-box #s:-ms-input-placeholder {
-      color: #fff; }
-    .search-box #s:focus {
-      border-bottom: 1px solid #fff;
-      width: 130px; }
-  .search-box button {
-    top: 1px;
-    left: -2px;
-    position: relative;
-    border: none;
-    outline: none;
-    background: none;
-    padding: 0;
-    color: #fff; }
+  .nav .menu-item:first-child {
+    margin-left: 0; }
+  .nav .menu-item:last-child {
+    margin-right: 0; }
 
 .socket {
   position: relative;
   display: block;
-  width: 100%;
+  float: right;
   left: 0;
   top: 0;
-  background: #4d4d4d;
   text-align: right;
-  font-size: 1rem;
-  padding: 0.75em 1em;
-  z-index: 999; }
-  .home .socket {
-    position: absolute;
-    background: none; }
+  font-size: .8rem;
+  padding: 5px 0 0 0;
+  z-index: 999;
+  max-height: 100px;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
 
-.socket-nav {
+.socket .socket-nav {
   display: inline-block;
   margin: 10px 0;
   vertical-align: middle; }
-  .socket-nav > li > a {
-    color: #fff;
-    margin: 0 2em;
-    outline: none !important; }
-    .socket-nav > li > a:hover, .socket-nav > li > a:focus {
-      text-decoration: underline; }
-  .socket-nav > li:first-child a:before {
-    content: '';
-    display: none; }
-  .socket-nav.account-btn li {
-    background: url(../images/icon-account.png) no-repeat top left;
-    background-size: 16px;
-    padding-left: 26px; }
-    .socket-nav.account-btn li a {
-      margin: 0 4em 0 0; }
+.socket li > a {
+  color: #4d4d4d;
+  margin: 0 1.5em;
+  outline: none !important; }
+  .socket li > a:hover, .socket li > a:focus {
+    color: #c4007a; }
+.socket li:first-child a:before {
+  content: '';
+  display: none; }
+
+.rhs-links a:hover {
+  color: #c4007a; }
 
 .primary-nav {
   position: relative;
+  float: right;
+  width: auto;
   max-height: none;
   background: none;
   overflow: visible;
-  text-align: center;
-  background: #d5d5d5;
+  text-align: right;
+  background: #fff !important;
+  padding: 0;
   /* end .menu li */
   /* highlight current page */ }
+  .primary-nav:before {
+    position: absolute;
+    top: -1px;
+    left: 15px;
+    width: 300%;
+    height: 1px;
+    background: #4d4d4d; }
+  .primary-nav a {
+    color: #4d4d4d !important; }
   .primary-nav > li {
-    border: none; }
+    border: none;
+    margin: 0 10px;
+    font-size: .8em; }
     .primary-nav > li > a {
       color: #4d4d4d;
       outline: none;
       font-size: 1em;
-      border: none; }
+      border: none;
+      padding: 15px 0 10px 3.5rem;
+      text-align: left; }
       .primary-nav > li > a br {
         display: block; }
     .primary-nav > li:hover a, .primary-nav > li:focus a, .primary-nav > li.current-product-parent a, .primary-nav > li.current-menu-item a, .primary-nav > li.current-product_cat-ancestor a {
-      color: #c4007a; }
+      color: #c4007a !important; }
     .primary-nav > li ul.sub-menu,
     .primary-nav > li ul.children {
       position: absolute;
@@ -350,13 +334,17 @@ POSTS & CONTENT STYLES
   font-size: 1rem; }
 
 .entry-content {
-  padding: 3rem;
+  padding: 2rem 3rem;
   font-size: 1rem; }
   .entry-content ul.col-2 {
     padding: 0; }
     .entry-content ul.col-2 li {
       width: 48%;
       display: inline-block; }
+
+.multiple-objects .product .post-title {
+  min-height: 13rem;
+  font-size: .75rem; }
 
 /*********************
 LAYOUT & GRID STYLES
@@ -418,16 +406,6 @@ html {
 
 .header {
   font-size: 1rem; }
-
-.primary-nav > li ul.sub-menu,
-.primary-nav > li ul.children {
-  padding: 1.2rem 0 1rem 2.5rem; }
-  .primary-nav > li ul.sub-menu li,
-  .primary-nav > li ul.children li {
-    padding: 0 1rem; }
-    .primary-nav > li ul.sub-menu li a,
-    .primary-nav > li ul.children li a {
-      font-size: 0.625rem; }
 
 .footer-links ul li {
   margin: 0 2rem; }

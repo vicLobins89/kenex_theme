@@ -6,6 +6,8 @@
 					
 					<?php get_sidebar('footer1'); ?>
 					<?php get_sidebar('footer2'); ?>
+					<?php get_sidebar('footer3'); ?>
+					<?php get_sidebar('footer4'); ?>
 
 					<!--<nav role="navigation">
 						<?php/* wp_nav_menu(array(

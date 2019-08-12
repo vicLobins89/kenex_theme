@@ -203,9 +203,8 @@ body#tinymce.wp-editor {
   
   ******************************************************************/
   /*********************
-  TYPEKIT
+  FONT FACE
   *********************/
-  @import url("https://use.typekit.net/ckh6kbl.css");
   /******************************************************************
   Site Name: Honey
   Author: Vic Lobins
@@ -293,10 +292,10 @@ body#tinymce.wp-editor {
     color: red;
   }
   */
-  font-family: "proxima-nova", Helvetica, Arial, sans-serif;
+  font-family: "Bliss", Helvetica, Arial, sans-serif;
   font-size: 100%;
   line-height: 1.5;
-  color: #4c4c4c;
+  color: #4d4d4d;
   -webkit-font-smoothing: antialiased;
   /*********************
 	LINK STYLES
@@ -498,14 +497,26 @@ body#tinymce.wp-editor {
   body#tinymce.wp-editor span.amp {
     font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif !important;
     font-style: italic; }
+@font-face {
+  body#tinymce.wp-editor {
+    font-family: 'Bliss';
+    src: url("../fonts/Bliss-Bold.woff2") format("woff2"), url("../fonts/Bliss-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal; } }
+@font-face {
+  body#tinymce.wp-editor {
+    font-family: 'Bliss';
+    src: url("../fonts/Bliss-Regular.woff2") format("woff2"), url("../fonts/Bliss-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal; } }
   body#tinymce.wp-editor .mce-toolbar .mce-btn i {
     color: #000; }
   body#tinymce.wp-editor a, body#tinymce.wp-editor a:visited {
-    color: #1f2043;
+    color: #4d4d4d;
     /* on hover */
     /* on click */ }
     body#tinymce.wp-editor a:hover, body#tinymce.wp-editor a:focus, body#tinymce.wp-editor a:visited:hover, body#tinymce.wp-editor a:visited:focus {
-      color: #ff8700; }
+      color: #676767; }
     body#tinymce.wp-editor a:link, body#tinymce.wp-editor a:visited:link {
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3); }
   body#tinymce.wp-editor h1, body#tinymce.wp-editor .h1, body#tinymce.wp-editor h2, body#tinymce.wp-editor .h2, body#tinymce.wp-editor h3, body#tinymce.wp-editor .h3, body#tinymce.wp-editor h4, body#tinymce.wp-editor .h4, body#tinymce.wp-editor h5, body#tinymce.wp-editor .h5 {
@@ -534,7 +545,7 @@ body#tinymce.wp-editor {
     margin: 0 0 1.5em; }
   body#tinymce.wp-editor table {
     width: 100%;
-    border: 1px solid #4c4c4c;
+    border: 1px solid #4d4d4d;
     margin-bottom: 1.5em; }
     body#tinymce.wp-editor table caption {
       margin: 0 0 7px;
@@ -543,18 +554,18 @@ body#tinymce.wp-editor {
       text-transform: uppercase;
       letter-spacing: 1px; }
   body#tinymce.wp-editor tr {
-    border-bottom: 1px solid #4c4c4c; }
+    border-bottom: 1px solid #4d4d4d; }
     body#tinymce.wp-editor tr:nth-child(even) {
-      background-color: #e5e5e5; }
+      background-color: #d5d5d5; }
   body#tinymce.wp-editor td {
     padding: 7px;
-    border-right: 1px solid #4c4c4c; }
+    border-right: 1px solid #4d4d4d; }
     body#tinymce.wp-editor td:last-child {
       border-right: 0; }
   body#tinymce.wp-editor th {
-    background-color: #e5e5e5;
-    border-bottom: 1px solid #4c4c4c;
-    border-right: 1px solid #4c4c4c; }
+    background-color: #d5d5d5;
+    border-bottom: 1px solid #4d4d4d;
+    border-right: 1px solid #4d4d4d; }
     body#tinymce.wp-editor th:last-child {
       border-right: 0; }
   body#tinymce.wp-editor blockquote {
@@ -581,7 +592,7 @@ body#tinymce.wp-editor {
     height: auto; }
   body#tinymce.wp-editor pre {
     background: #000;
-    color: #e5e5e5;
+    color: #d5d5d5;
     font-size: 0.9em;
     padding: 1.5em;
     margin: 0 0 1.5em;

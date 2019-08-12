@@ -136,8 +136,8 @@ function bones_register_sidebars() {
 
 	register_sidebar(array(
 		'id' => 'footer1',
-		'name' => __( 'Footer Left', 'bonestheme' ),
-		'description' => __( 'The left footer.', 'bonestheme' ),
+		'name' => __( 'Footer 1', 'bonestheme' ),
+		'description' => __( 'Footer 1', 'bonestheme' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h4 class="widgettitle">',
@@ -146,8 +146,28 @@ function bones_register_sidebars() {
 	
 	register_sidebar(array(
 		'id' => 'footer2',
-		'name' => __( 'Footer Right', 'bonestheme' ),
-		'description' => __( 'The right footer.', 'bonestheme' ),
+		'name' => __( 'Footer 2', 'bonestheme' ),
+		'description' => __( 'Footer 2', 'bonestheme' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h4 class="widgettitle">',
+		'after_title' => '</h4>',
+	));
+	
+	register_sidebar(array(
+		'id' => 'footer3',
+		'name' => __( 'Footer 3', 'bonestheme' ),
+		'description' => __( 'Footer 3', 'bonestheme' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h4 class="widgettitle">',
+		'after_title' => '</h4>',
+	));
+	
+	register_sidebar(array(
+		'id' => 'footer4',
+		'name' => __( 'Footer 4', 'bonestheme' ),
+		'description' => __( 'Footer 4', 'bonestheme' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h4 class="widgettitle">',
@@ -239,6 +259,8 @@ function mytheme_add_woocommerce_support() {
 }
 add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 
+//add_theme_support( 'wc-product-gallery-lightbox' );
+
 // Short Desc in Archive
 function action_woocommerce_after_shop_loop_item_title(  ) { 
     return the_excerpt();
@@ -304,10 +326,10 @@ function no_price($return, $price, $args) {
 }
 add_filter( 'wc_price', 'no_price', 10, 3 );
 
-// 2 Column list
+// Column list
 if (!function_exists('loop_columns')) {
 	function loop_columns() {
-		return 2;
+		return 3;
 	}
 }
 add_filter('loop_shop_columns', 'loop_columns');
@@ -316,6 +338,7 @@ add_filter('loop_shop_columns', 'loop_columns');
 function theme_custom_action() {
 	$parentid = get_queried_object_id();
 	$termParent = get_term($parentid, 'product_cat');
+	$parent = get_term($termParent->parent, 'product_cat');
 
 	if( $termParent->parent != 0 ) :
 
@@ -341,10 +364,11 @@ function theme_custom_action() {
 
 		$more_products = new WP_Query( $args );
 		if( $more_products->have_posts() ) :
+        global $product;
 		?>
 			<section class="row entry-content products-slider cf">
-				<h2>More Imaging accessories</h2>
 				<div class="cf">
+                <h2>More <?php echo $parent->name; ?></h2>
 				<div class="multiple-objects">
 					<?php while ( $more_products->have_posts() ) : $more_products->the_post(); ?>
 						<li class="product">
@@ -353,7 +377,7 @@ function theme_custom_action() {
 							</a>
 
 							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="post-title">
-								<h3><?php the_title(); ?></h3>
+								<h3><?php the_title(); ?><br><?php echo $product->get_sku(); ?></h3>
 
 								<?php the_excerpt(); ?>
 							</a>
@@ -412,7 +436,7 @@ add_action('woocommerce_shop_loop_item_title', 'shop_loop_sku', 5);
 add_filter( 'woocommerce_get_image_size_gallery_thumbnail', function( $size ) {
 	return array(
 		'width' => 250,
-		'height' => 150,
+		'height' => 250,
 		'crop' => 1
 	);
 } );
@@ -423,6 +447,13 @@ function theme_show_sku(){
     echo '<p class="sku">'.$product->get_sku().'</p>';
 }
 add_action( 'woocommerce_single_product_summary', 'theme_show_sku', 5 );
+add_action( 'woocommerce_shop_loop_item_title', 'theme_show_sku', 11 );
+
+// Anchor link for details
+function anchor_link_for_details() {
+	echo '<p><a href="#details"><u>View product details</u></a></p>';
+}
+add_action( 'woocommerce_before_add_to_cart_form', 'anchor_link_for_details', 5 );
 
 // Tabs
 function woo_edit_tabs( $tabs ) {
@@ -434,6 +465,14 @@ add_filter( 'woocommerce_product_tabs', 'woo_edit_tabs', 98 );
 
 function woo_new_product_tab( $tabs ) {
 	// Adds the new tab
+//    if( get_field('kit_codes') ) {
+//        $tabs['kit_codes'] = array(
+//			'title' 	=> __( 'Kit codes', 'woocommerce' ),
+//			'priority' 	=> 40,
+//			'callback' 	=> 'render_kit_codes_tab'
+//		);
+//    }
+    
 	if( have_rows('downloads') ) {
 		$tabs['downloads'] = array(
 			'title' 	=> __( 'Downloads', 'woocommerce' ),
@@ -445,32 +484,43 @@ function woo_new_product_tab( $tabs ) {
 	if( have_rows('accreditations') ) {
 		$tabs['accreditations'] = array(
 			'title' 	=> __( 'Accreditations', 'woocommerce' ),
-			'priority' 	=> 50,
+			'priority' 	=> 60,
 			'callback' 	=> 'render_accreditations_tab'
 		);
 	}
 	
 	return $tabs;
 }
-function render_downloads_tab() {
-	if( have_rows('downloads') ) : 
-		echo '<h2>Downloads</h2>';
-		while( have_rows('downloads') ): the_row();
-			echo '<a class="product-downloads" target="_blank" href="'.get_sub_field('file').'">> '.get_sub_field('name').'</a><br>';
-		endwhile;
+
+function render_kit_codes_tab() {
+	if( get_field('kit_codes') ) : 
+		the_field('kit_codes');
 	endif;
 }
+
+function render_downloads_tab() {
+	if( have_rows('downloads') ) : 
+		echo '<ul>';
+		while( have_rows('downloads') ): the_row();
+			echo '<li><a class="product-downloads" target="_blank" href="'.get_sub_field('file').'"> '.get_sub_field('name').'</a></li>';
+		endwhile;
+		echo '</ul>';
+	endif;
+}
+
 function render_accreditations_tab() {
 	$accreditations = get_field('accreditations');
-	if( $accreditations ) :
-		echo '<h2>Accreditations</h2>'; ?>
+	if( $accreditations ) : ?>
 		<ul class="product-accreditations">
-			<?php foreach( $accreditations as $accreditation ):
-				echo '<li><img src="'.get_template_directory_uri().'/library/images/certs/'.$accreditation.'.jpg" alt="'.$accreditation.'"></li>';
+			<?php foreach( $accreditations as $accreditation ) :
+                $acc_url = strtolower($accreditation);
+                $acc_url = str_replace(' ', '', $acc_url);
+				echo '<li><img src="'.get_template_directory_uri().'/library/images/certs/'.$acc_url.'.jpg" alt="'.$accreditation.'"></li>';
 			endforeach; ?>
 		</ul>
 	<?php endif;
 }
+
 add_filter( 'woocommerce_product_tabs', 'woo_new_product_tab' );
 
 
@@ -551,5 +601,34 @@ function privacy_checkbox_error_message() {
 	}
 }
 add_action( 'woocommerce_checkout_process', 'privacy_checkbox_error_message' );
+
+
+// Shown variations
+function handsome_bearded_guy_increase_variations_per_page() {
+	return 50;
+}
+add_filter( 'woocommerce_admin_meta_boxes_variations_per_page', 'handsome_bearded_guy_increase_variations_per_page' );
+
+
+// Custom image field
+function edit_media_custom_field( $form_fields, $post ) {
+    $form_fields['custom_field'] = array( 'label' => 'Custom Field', 'input' => 'text', 'value' => get_post_meta( $post->ID, '_custom_field', true ) );
+    return $form_fields;
+}
+
+function save_media_custom_field( $post, $attachment ) {
+    update_post_meta( $post['ID'], '_custom_field', $attachment['custom_field'] );
+    return $post;
+}
+add_filter('attachment_fields_to_edit', 'edit_media_custom_field', 11, 2 );
+add_filter('attachment_fields_to_save', 'save_media_custom_field', 11, 2 );
+
+// define the woocommerce_single_product_image_thumbnail_html callback 
+function filter_woocommerce_single_product_image_thumbnail_html( $sprintf, $post_id ) {
+    return $sprintf; 
+}; 
+         
+// add the filter 
+add_filter( 'woocommerce_single_product_image_thumbnail_html', 'filter_woocommerce_single_product_image_thumbnail_html', 10, 2 );
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

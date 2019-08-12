@@ -24,11 +24,19 @@ if ( ! function_exists( 'wc_get_gallery_image_html' ) ) {
 }
 
 global $product;
-
+$post_thumbnail_id = $product->get_image_id();
 $attachment_ids = $product->get_gallery_image_ids();
 
 if ( $attachment_ids && has_post_thumbnail() ) {
+    echo '<div class="slider-nav multiple-objects gallery-thumbs">';
+    
+    $html = wc_get_gallery_image_html( $post_thumbnail_id );
+    echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id );
+    
 	foreach ( $attachment_ids as $attachment_id ) {
 		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html( $attachment_id  ), $attachment_id );
 	}
+    
+    echo '</div>';
 }
+?>

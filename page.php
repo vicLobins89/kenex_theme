@@ -7,14 +7,21 @@
 					<div id="main" class="cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-
-						<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">								
-
-							<?php // MAIN CONTENT ?>
-							<?php if( get_the_content() ) : ?>
-								<section class="entry-content cf" itemprop="articleBody">
+						
+						<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">	
+							
+							<?php // HERO AREA ?>
+							<?php if( has_post_thumbnail() && is_page() ) : ?>
+							<div class="featured-image">
+								<?php the_post_thumbnail('full'); ?>
+								<div class="hero-title">
 									<?php the_content(); ?>
-								</section>
+								</div>
+							</div>
+							<?php elseif( get_the_content() ) : ?>
+							<section class="entry-content cf" itemprop="articleBody">
+								<?php the_content(); ?>
+							</section>
 							<?php endif; ?>
 
 							<?php // COLUMNS CONTENT ?>
@@ -130,12 +137,13 @@
 								$args = array(
 									'post_type'   => 'product',
 									'post_status' => 'publish',
-									'posts_per_page'  => '6',
+									'posts_per_page'  => '4',
 									'orderby'=>'rand',
 								);
 
 								$additional_products = new WP_Query( $args );
 								if( $additional_products->have_posts() ) :
+                                global $product;
 								?>
 									<section class="row entry-content products-slider cf">
 										<div class="cf">
@@ -147,7 +155,7 @@
 													</a>
 
 													<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="post-title">
-														<h3><?php the_title(); ?></h3>
+														<h3><?php the_title(); ?><br><?php echo $product->get_sku(); ?></h3>
 
 														<?php the_excerpt(); ?>
 													</a>

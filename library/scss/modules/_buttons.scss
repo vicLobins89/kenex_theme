@@ -24,12 +24,11 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
     color: #fff;
     border: 2px solid #fff;
     background-color: transparent;
-	border-radius: 6px;
-    font-size: 1rem;
-	font-weight: bold;
+    font-size: 1.3rem;
+    font-weight: bold;
     line-height: 1;
-    padding: 0.5rem 3rem;
-    margin: 1rem 0;
+    padding: 1rem 2.5rem .8rem;
+    margin: 0;
     cursor: pointer;
     text-align: center;
     clear: both;
@@ -51,19 +50,25 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 		color: inherit !important;
 		text-decoration: inherit !important;
 	}
+	
+	&.disbaled,
+	&:disabled,
+	&:disabled[disabled] {
+		background: $gray;
+	}
 
 } // end .button
 
 .primary-btn, a.primary-btn {
 	@extend %btn; // here we load the btn defaults
-	background-color: $orange;
-	border-color: $orange;
+	background-color: $pink;
+	border-color: $pink;
 	color: $white;
 
 	&:hover,
 	&:focus {
 		background-color: $white;
-		color: $orange;
+		color: $pink;
 	} // end hover// end active
 }
 
@@ -81,4 +86,15 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 		background-color: $orange;
 		color: $blue;
 	} // end hover// end active
+}
+
+.primary-link {
+	background: url(../images/icon-next.png) no-repeat center right;
+	background-size: 1rem;
+	padding: 6px 30px 3px 0;
+	@include transition(all 0.2s ease-in-out);
+
+	&:hover {
+		padding-right: 40px;
+	}
 }

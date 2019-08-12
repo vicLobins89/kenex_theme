@@ -1,4 +1,4 @@
-<div class="footer-right col-6 cf" role="complementary">
+<div class="footer-2 col-3 cf" role="complementary">
 
 	<?php if ( is_active_sidebar( 'footer2' ) ) : ?>
 
