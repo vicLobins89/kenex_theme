@@ -30,25 +30,6 @@ $tabs = apply_filters( 'woocommerce_product_tabs', array() );
 
 if ( ! empty( $tabs ) ) : ?>
 	
-<!--	<div class="cf"></div>-->
-	<?php/*
-	$rowCount; 
-	foreach ( $tabs as $key => $tab ) {
-		$rowCount ++;
-	}
-	if( $rowCount <= 2 ) : 
-	*/?>
-<!--		<div class="product-extras-wrapper cf full-width">-->
-	<?php //else : ?>
-<!--		<div class="product-extras-wrapper cf">-->
-	<?php //endif; ?>
-		<?php //foreach ( $tabs as $key => $tab ) : ?>
-<!--			<div class="product-extras-section extras-<?php echo esc_attr( $key ); ?>">-->
-				<?php //if ( isset( $tab['callback'] ) ) { call_user_func( $tab['callback'], $key, $tab ); } ?>
-<!--			</div>-->
-		<?php //endforeach; ?>
-<!--	</div>-->
-	
     <a class="anchor" id="details"></a>
 	<div class="woocommerce-tabs wc-tabs-wrapper">
 		<ul class="tabs wc-tabs" role="tablist">

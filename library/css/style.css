@@ -1355,7 +1355,8 @@ LAYOUT & GRID STYLES
     margin: 0;
     bottom: -2rem;
     left: 50%;
-    transform: translate(-50%, 0); }
+    transform: translate(-50%, 0);
+    display: none !important; }
     .multiple-objects .slick-dots li {
       display: inline-block;
       margin: 0;
@@ -1557,46 +1558,40 @@ NAVIGATION STYLES
       top: -3px;
       left: 0;
       transform: scale(0.4);
-      background-size: cover !important; }
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center top;
+      -webkit-transition: all 0.14s ease-in-out;
+      transition: all 0.14s ease-in-out; }
+    .primary-nav > li:hover:before, .primary-nav > li.current-product-parent:before, .primary-nav > li.current-menu-item:before, .primary-nav > li.current-product_cat-ancestor:before {
+      background-position: center bottom; }
     .primary-nav > li.icon-xray_shielding:before {
-      background: url(../images/icon-xray_shielding.png) no-repeat 0 0;
+      background-image: url(../images/icon-xray_shielding.png);
       width: 55px;
       height: 64px; }
-    .primary-nav > li.icon-xray_shielding:hover:before, .primary-nav > li.icon-xray_shielding.current-product-parent:before, .primary-nav > li.icon-xray_shielding.current-menu-item:before, .primary-nav > li.icon-xray_shielding.current-product_cat-ancestor:before {
-      background-position: 0 -64px; }
     .primary-nav > li.icon-imaging_accessories:before {
-      background: url(../images/icon-imaging_accessories.png) no-repeat 0 0;
+      background-image: url(../images/icon-imaging_accessories.png);
       width: 60px;
       height: 60px;
       top: 0px; }
-    .primary-nav > li.icon-imaging_accessories:hover:before, .primary-nav > li.icon-imaging_accessories.current-product-parent:before, .primary-nav > li.icon-imaging_accessories.current-menu-item:before, .primary-nav > li.icon-imaging_accessories.current-product_cat-ancestor:before {
-      background-position: 0 -60px; }
     .primary-nav > li.icon-operating_lamps:before {
-      background: url(../images/icon-operating_lamps.png) no-repeat 0 0;
+      background-image: url(../images/icon-operating_lamps.png);
       width: 45px;
       height: 69px; }
-    .primary-nav > li.icon-operating_lamps:hover:before, .primary-nav > li.icon-operating_lamps.current-product-parent:before, .primary-nav > li.icon-operating_lamps.current-menu-item:before, .primary-nav > li.icon-operating_lamps.current-product_cat-ancestor:before {
-      background-position: 0 -69px; }
     .primary-nav > li.icon-protective_clothing:before {
-      background: url(../images/icon-protective_clothing.png) no-repeat 0 0;
+      background-image: url(../images/icon-protective_clothing.png);
       width: 55px;
       height: 57px;
       top: 2px; }
-    .primary-nav > li.icon-protective_clothing:hover:before, .primary-nav > li.icon-protective_clothing.current-product-parent:before, .primary-nav > li.icon-protective_clothing.current-menu-item:before, .primary-nav > li.icon-protective_clothing.current-product_cat-ancestor:before {
-      background-position: 0 -57px; }
     .primary-nav > li.icon-suspension_systems:before {
-      background: url(../images/icon-suspension_systems.png) no-repeat 0 0;
+      background-image: url(../images/icon-suspension_systems.png);
       width: 60px;
       height: 58px;
       top: 4px; }
-    .primary-nav > li.icon-suspension_systems:hover:before, .primary-nav > li.icon-suspension_systems.current-product-parent:before, .primary-nav > li.icon-suspension_systems.current-menu-item:before, .primary-nav > li.icon-suspension_systems.current-product_cat-ancestor:before {
-      background-position: 0 -58px; }
     .primary-nav > li.icon-bespoke:before {
-      background: url(../images/icon-bespoke.png) no-repeat 0 0;
+      background-image: url(../images/icon-bespoke.png);
       width: 55px;
       height: 65px; }
-    .primary-nav > li.icon-bespoke:hover:before, .primary-nav > li.icon-bespoke.current-product-parent:before, .primary-nav > li.icon-bespoke.current-menu-item:before, .primary-nav > li.icon-bespoke.current-product_cat-ancestor:before {
-      background-position: 0 -65.5px; }
     .primary-nav > li.icon-bespoke.current-product-parent:after, .primary-nav > li.icon-bespoke.current-menu-item:after, .primary-nav > li.icon-bespoke.current-product_cat-ancestor:after {
       bottom: -4rem; }
     .primary-nav > li > a {
@@ -2211,8 +2206,6 @@ FOOTER STYLES
   #inner-footer .footer-4 {
     padding-right: 0;
     padding-left: 0; }
-    #inner-footer .footer-4 p {
-      font-weight: bold; }
   #inner-footer p {
     font-size: 1.4em; }
 
@@ -2686,7 +2679,8 @@ dd p {
     margin: 0;
     bottom: -2rem;
     left: 50%;
-    transform: translate(-50%, 0); }
+    transform: translate(-50%, 0);
+    display: none !important; }
     .slick-lightbox .slick-dots li {
       display: inline-block;
       margin: 0;

@@ -548,6 +548,7 @@ LAYOUT & GRID STYLES
 		bottom: -2rem;
 		left: 50%;
 		transform: translate(-50%, 0);
+        display: none !important;
 		
 		li {
 			display: inline-block;
@@ -809,116 +810,67 @@ NAVIGATION STYLES
 			top: -3px;
 			left: 0;
     		transform: scale(.4);
-			background-size: cover !important;
+			background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+            @include transition(all 0.14s ease-in-out);
 		}
 		
-		&.current-product-parent,
-		&.current-menu-item,
-		&.current-product_cat-ancestor {
-//			&:after {
-//				position: absolute;
-//				content: '';
-//				width: 0; 
-//				height: 0;
-//				left: 50%;
-//				bottom: -1rem;
-//				transform: translate(-50%, 0);
-//				border-left: .75rem solid transparent;
-//				border-right: .75rem solid transparent;
-//				border-top: .75rem solid $light-gray;
-//			}
-		}
+		&:hover:before,
+        &.current-product-parent:before,
+        &.current-menu-item:before,
+        &.current-product_cat-ancestor:before {
+            background-position: center bottom;
+        }
 		
 		&.icon-xray_shielding {
 			&:before {
-				background: url(../images/icon-xray_shielding.png) no-repeat 0 0;
+				background-image: url(../images/icon-xray_shielding.png);
 				width: 55px;
 				height: 64px;
-			}
-			
-			&:hover:before,
-			&.current-product-parent:before,
-			&.current-menu-item:before,
-			&.current-product_cat-ancestor:before {
-				background-position: 0 -64px;
 			}
 		}
 		
 		&.icon-imaging_accessories {
 			&:before {
-				background: url(../images/icon-imaging_accessories.png) no-repeat 0 0;
+				background-image: url(../images/icon-imaging_accessories.png);
 				width: 60px;
 				height: 60px;
 				top: 0px;
-			}
-			
-			&:hover:before,
-			&.current-product-parent:before,
-			&.current-menu-item:before,
-			&.current-product_cat-ancestor:before {
-				background-position: 0 -60px;
 			}
 		}
 		
 		&.icon-operating_lamps {
 			&:before {
-				background: url(../images/icon-operating_lamps.png) no-repeat 0 0;
+				background-image: url(../images/icon-operating_lamps.png);
 				width: 45px;
 				height: 69px;
-			}
-			
-			&:hover:before,
-			&.current-product-parent:before,
-			&.current-menu-item:before,
-			&.current-product_cat-ancestor:before {
-				background-position: 0 -69px;
 			}
 		}
 		
 		&.icon-protective_clothing {
 			&:before {
-				background: url(../images/icon-protective_clothing.png) no-repeat 0 0;
+				background-image: url(../images/icon-protective_clothing.png);
 				width: 55px;
 				height: 57px;
 				top: 2px;
-			}
-			
-			&:hover:before,
-			&.current-product-parent:before,
-			&.current-menu-item:before,
-			&.current-product_cat-ancestor:before {
-				background-position: 0 -57px;
 			}
 		}
 		
 		&.icon-suspension_systems {
 			&:before {
-				background: url(../images/icon-suspension_systems.png) no-repeat 0 0;
+				background-image: url(../images/icon-suspension_systems.png);
 				width: 60px;
 				height: 58px;
 				top: 4px;
-			}
-			
-			&:hover:before,
-			&.current-product-parent:before,
-			&.current-menu-item:before,
-			&.current-product_cat-ancestor:before {
-				background-position: 0 -58px;
 			}
 		}
 		
 		&.icon-bespoke {
 			&:before {
-				background: url(../images/icon-bespoke.png) no-repeat 0 0;
+				background-image: url(../images/icon-bespoke.png);
 				width: 55px;
 				height: 65px;
-			}
-			
-			&:hover:before,
-			&.current-product-parent:before,
-			&.current-menu-item:before,
-			&.current-product_cat-ancestor:before {
-				background-position: 0 -65.5px;
 			}
 			
 			&.current-product-parent,
@@ -1855,7 +1807,6 @@ FOOTER STYLES
     .footer-4 {
         padding-right: 0;
         padding-left: 0;
-        p { font-weight: bold; }
     }
     
     p {
@@ -2566,6 +2517,7 @@ dd p {
 		bottom: -2rem;
 		left: 50%;
 		transform: translate(-50%, 0);
+        display: none !important;
 		
 		li {
 			display: inline-block;
