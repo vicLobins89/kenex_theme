@@ -74,18 +74,28 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 
 .secondary-btn, a.secondary-btn {
 	@extend %btn; // here we load the btn defaults
-	background-color: transparent;
-	border-color: $blue;
-	color: $blue;
-	font-weight: normal;
-	padding: 0.5rem 2rem;
-	border-width: 1px;
+	background-color: $gray;
+	border-color: $gray;
+	color: $white;
+    float: none;
+    width: 100%;
 
 	&:hover,
 	&:focus {
-		background-color: $orange;
-		color: $blue;
+		background-color: $white;
+		color: $gray;
 	} // end hover// end active
+    
+    &.alt {
+        background-color: $white;
+		color: $gray;
+        
+        &:hover,
+        &:focus {
+            background-color: $gray;
+            color: $white;
+        }
+    }
 }
 
 .primary-link {

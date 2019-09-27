@@ -77,6 +77,7 @@
                         <div class="basket-box">
                         <?php 
                             echo '<div class="rhs-links">';
+                            echo '<a href="'.home_url('/quick-quote').'" class="menu-item quote" title="Quick quote">Quick quote</a>';
                             echo '<a href="'.wc_get_cart_url().'" class="menu-item basket basket-n-w" title="View your shopping cart">';
                             if( WC()->cart->get_cart_contents_count() !== 0 ) {
                             echo '<span class="basket-n">'.sprintf ( _n( '%d', '%d', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ).'</span>';

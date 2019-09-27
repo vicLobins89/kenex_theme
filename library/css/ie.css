@@ -232,8 +232,8 @@ NAVIGATION STYLES
   margin: 10px 0;
   vertical-align: middle; }
 .socket li > a {
-  color: #4d4d4d;
-  margin: 0 1.5em;
+  color: #595959;
+  margin: 0 1em;
   outline: none !important; }
   .socket li > a:hover, .socket li > a:focus {
     color: #c4007a; }
@@ -241,6 +241,17 @@ NAVIGATION STYLES
   content: '';
   display: none; }
 
+.rhs-links .quote {
+  background: #c4007a;
+  color: #fff;
+  padding: 5px 6px 4px;
+  margin-right: 1.35rem;
+  top: -1px;
+  position: relative;
+  border: 2px solid #c4007a; }
+  .rhs-links .quote:hover {
+    background: #fff;
+    color: #c4007a; }
 .rhs-links a:hover {
   color: #c4007a; }
 
@@ -254,23 +265,68 @@ NAVIGATION STYLES
   text-align: right;
   background: #fff !important;
   padding: 0;
+  visibility: visible;
+  opacity: 1;
   /* end .menu li */
   /* highlight current page */ }
+  .primary-nav li {
+    visibility: visible;
+    opacity: 1; }
   .primary-nav:before {
     position: absolute;
     top: -1px;
     left: 15px;
     width: 300%;
     height: 1px;
-    background: #4d4d4d; }
+    background: #595959; }
   .primary-nav a {
-    color: #4d4d4d !important; }
+    color: #595959 !important; }
   .primary-nav > li {
     border: none;
     margin: 0 10px;
     font-size: .8em; }
+    .primary-nav > li:before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 0;
+      transform: scale(0.4);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center top; }
+    .primary-nav > li:hover:before, .primary-nav > li.current-product-parent:before, .primary-nav > li.current-menu-item:before, .primary-nav > li.current-product_cat-ancestor:before {
+      background-position: center bottom; }
+    .primary-nav > li.icon-xray_shielding:before {
+      background-image: url(../images/icon-xray_shielding.png);
+      width: 55px;
+      height: 64px; }
+    .primary-nav > li.icon-imaging_accessories:before {
+      background-image: url(../images/icon-imaging_accessories.png);
+      width: 66px;
+      height: 59px;
+      top: 0px; }
+    .primary-nav > li.icon-operating_lamps:before {
+      background-image: url(../images/icon-operating_lamps.png);
+      width: 45px;
+      height: 69px; }
+    .primary-nav > li.icon-protective_clothing:before {
+      background-image: url(../images/icon-protective_clothing.png);
+      width: 55px;
+      height: 57px;
+      top: 2px; }
+    .primary-nav > li.icon-suspension_systems:before {
+      background-image: url(../images/icon-suspension_systems.png);
+      width: 60px;
+      height: 57px;
+      top: 2px; }
+    .primary-nav > li.icon-bespoke:before {
+      background-image: url(../images/icon-bespoke.png);
+      width: 55px;
+      height: 65px; }
+    .primary-nav > li.icon-bespoke.current-product-parent:after, .primary-nav > li.icon-bespoke.current-menu-item:after, .primary-nav > li.icon-bespoke.current-product_cat-ancestor:after {
+      bottom: -4rem; }
     .primary-nav > li > a {
-      color: #4d4d4d;
+      color: #595959;
       outline: none;
       font-size: 1em;
       border: none;
@@ -330,6 +386,10 @@ POSTS & CONTENT STYLES
   width: 100%;
   margin: 0 auto; }
 
+.hero-title {
+  width: 80%;
+  width: calc(100% - 6rem); }
+
 .page-title {
   font-size: 1rem; }
 
@@ -378,6 +438,11 @@ SIDEBARS & ASIDES
 /*********************
 FOOTER STYLES
 *********************/
+[class*="footer-"] {
+  width: 25%;
+  padding: 0;
+  clear: none; }
+
 .footer-links {
   margin: 0; }
   .footer-links ul {

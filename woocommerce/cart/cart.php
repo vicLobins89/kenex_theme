@@ -28,8 +28,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<thead>
 			<tr>
 				<th class="product-remove">Remove?</th>
-				<th class="product-thumbnail">Image</th>
 				<th class="product-name"><?php esc_html_e( 'Product', 'woocommerce' ); ?></th>
+                <th class="product-thumbnail">Image</th>
 				<!--<th class="product-price"><?php //esc_html_e( 'Price', 'woocommerce' ); ?></th>-->
 				<th class="product-quantity"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></th>
 				<!--<th class="product-subtotal"><?php //esc_html_e( 'Total', 'woocommerce' ); ?></th>-->
@@ -61,18 +61,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 							?>
 						</td>
 
-						<td class="product-thumbnail">
-						<?php
-						$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
-
-						if ( ! $product_permalink ) {
-							echo wp_kses_post( $thumbnail );
-						} else {
-							printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), wp_kses_post( $thumbnail ) );
-						}
-						?>
-						</td>
-
 						<td class="product-name" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
 						<?php
 						if ( ! $product_permalink ) {
@@ -92,6 +80,18 @@ do_action( 'woocommerce_before_cart' ); ?>
 						}
 						?>
 						</td>
+                        
+                        <td class="product-thumbnail">
+						<?php
+						$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+
+						if ( ! $product_permalink ) {
+							echo wp_kses_post( $thumbnail );
+						} else {
+							printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), wp_kses_post( $thumbnail ) );
+						}
+						?>
+						</td>
 
 						<!--<td class="product-price" data-title="<?php //esc_attr_e( 'Price', 'woocommerce' ); ?>">
 							<?php/*
@@ -99,7 +99,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 							*/?>
 						</td>-->
 
-						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
+						<td width="100" class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
 						<?php
 						if ( $_product->is_sold_individually() ) {
 							$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );

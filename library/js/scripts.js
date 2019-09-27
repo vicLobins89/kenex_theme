@@ -60,7 +60,27 @@ jQuery(document).ready(function($) {
 		dots: true,
 		infinite: true,
 		slidesToShow: 4,
-		slidesToScroll: 4
+		slidesToScroll: 4,
+        responsive: [
+            {
+                breakpoint: 1030,
+                settings: {
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 360,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ]
 	});
     
     var countThumbs = $('.gallery-thumbs .woocommerce-product-gallery__image:not(.slick-cloned)').length;
@@ -108,4 +128,37 @@ jQuery(document).ready(function($) {
     $('.gallery-thumbs a').click(function(e){
         e.preventDefault();
     });
+	
+	
+	// My account orders select
+	$('.time-period').change(function(){
+		var newDate = new Date(),
+			selectedDate = $(this).val();
+		
+		newDate.setDate(newDate.getDate() - selectedDate);
+		
+		var newMonth = newDate.getMonth() + 1,
+		newDay = newDate.getDate();
+		
+		if(newDate.getMonth() < 10){
+			newMonth = '0' + (newDate.getMonth() + 1);
+		}
+
+		if(newDate.getDate() < 10){
+			newDay = '0' + newDate.getDate();
+		}
+		
+		var newDatetime = newDate.getFullYear()+newMonth+newDay;
+		
+		$('.woocommerce-orders-table__cell-order-date').each(function(){
+			var orderDate = $(this).find('time').attr('datetime');
+			
+			if( orderDate >= newDatetime ) {
+				$(this).closest('tr').show();
+			} else {
+				$(this).closest('tr').hide();
+			}
+		});
+	});
+    
 });

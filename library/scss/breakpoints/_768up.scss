@@ -95,7 +95,7 @@ NAVIGATION STYLES
 	li {
 		> a {
 			color: $gray;
-			margin: 0 1.5em;
+			margin: 0 1em;
 			outline: none !important;
 			
 			&:hover, &:focus {
@@ -112,8 +112,25 @@ NAVIGATION STYLES
 	}
 }
 
-.rhs-links a:hover {
-    color: $pink;
+.rhs-links {
+	.quote {
+		background: $pink;
+		color: $white;
+		padding: 5px 6px 4px;
+		margin-right: 1.35rem;
+		top: -1px;
+		position: relative;
+		border: 2px solid $pink;
+		
+		&:hover {
+			background: $white;
+			color: $pink;
+		}
+	}
+	
+	a:hover {
+		color: $pink;
+	}
 }
 
 .primary-nav {
@@ -126,6 +143,13 @@ NAVIGATION STYLES
 	text-align: right;
 	background: $white !important;
     padding: 0;
+    visibility: visible;
+    opacity: 1;
+    
+    li {
+        visibility: visible;
+        opacity: 1;
+    }
     
     &:before {
         position: absolute;
@@ -144,6 +168,84 @@ NAVIGATION STYLES
 		border: none;
 		margin: 0 10px;
 		font-size: .8em;
+        
+        &:before {
+			content: '';
+			position: absolute;
+			top: -3px;
+			left: 0;
+    		transform: scale(.4);
+			background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+            //@include transition(all 0.14s ease-in-out);
+		}
+		
+		&:hover:before,
+        &.current-product-parent:before,
+        &.current-menu-item:before,
+        &.current-product_cat-ancestor:before {
+            background-position: center bottom;
+        }
+		
+		&.icon-xray_shielding {
+			&:before {
+				background-image: url(../images/icon-xray_shielding.png);
+				width: 55px;
+				height: 64px;
+			}
+		}
+		
+		&.icon-imaging_accessories {
+			&:before {
+				background-image: url(../images/icon-imaging_accessories.png);
+				width: 66px;
+                height: 59px;
+				top: 0px;
+			}
+		}
+		
+		&.icon-operating_lamps {
+			&:before {
+				background-image: url(../images/icon-operating_lamps.png);
+				width: 45px;
+				height: 69px;
+			}
+		}
+		
+		&.icon-protective_clothing {
+			&:before {
+				background-image: url(../images/icon-protective_clothing.png);
+				width: 55px;
+				height: 57px;
+				top: 2px;
+			}
+		}
+		
+		&.icon-suspension_systems {
+			&:before {
+				background-image: url(../images/icon-suspension_systems.png);
+				width: 60px;
+				height: 57px;
+				top: 2px;
+			}
+		}
+		
+		&.icon-bespoke {
+			&:before {
+				background-image: url(../images/icon-bespoke.png);
+				width: 55px;
+				height: 65px;
+			}
+			
+			&.current-product-parent,
+			&.current-menu-item,
+			&.current-product_cat-ancestor {
+				&:after {
+					bottom: -4rem;
+				}
+			}
+		}
 		
 		> a {
 			color: $gray;
@@ -246,6 +348,11 @@ POSTS & CONTENT STYLES
     margin: 0 auto;
 }
 
+.hero-title {
+     width: 80%;
+     width: calc(100% - 6rem);
+}
+
 .page-title {
 	font-size: 1rem;
 }
@@ -320,8 +427,10 @@ SIDEBARS & ASIDES
 FOOTER STYLES
 *********************/
 
-.footer {
-
+[class*="footer-"]  {
+    width: 25%;
+    padding: 0;
+    clear: none;
 }
 
 .footer-links {
