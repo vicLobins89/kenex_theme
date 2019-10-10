@@ -25,42 +25,32 @@ function woo_custom_single_add_to_cart_text() {
 add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_single_add_to_cart_text' );
 
 
-//Remove billing fields 
-function remove_billing_checkout_fields( $fields ) {
-    unset($fields['billing']['billing_first_name']);
-    unset($fields['billing']['billing_last_name']);
-    unset($fields['billing']['billing_company']);
-    unset($fields['billing']['billing_address_1']);
-    unset($fields['billing']['billing_address_2']);
-    unset($fields['billing']['billing_city']);
-    unset($fields['billing']['billing_postcode']);
-    unset($fields['billing']['billing_country']);
-    unset($fields['billing']['billing_state']);
-    unset($fields['billing']['billing_phone']);
-    unset($fields['billing']['billing_address_2']);
-    unset($fields['billing']['billing_postcode']);
-    unset($fields['billing']['billing_company']);
-    unset($fields['billing']['billing_last_name']);
-    unset($fields['billing']['billing_email']);
-    unset($fields['billing']['billing_city']);
+add_filter( 'woocommerce_default_address_fields', 'bbloomer_reorder_checkout_fields' );
+  
+function bbloomer_reorder_checkout_fields( $fields ) {
     return $fields;
 }
-add_filter( 'woocommerce_checkout_fields' , 'remove_billing_checkout_fields' );
-
 
 // Order notes
 function custom_override_checkout_fields( $fields ) {
+    //Add order comments
 	$fields['order']['order_comments']['label'] = 'Delivery details';
 	$fields['order']['order_comments']['type'] = 'select';
+	$fields['order']['order_comments']['required'] = true;
 	$fields['order']['order_comments']['options'] = array(
+		'' => 'Please select',
 		'Freight quote' => 'Freight quote',
 		'Weight and dimensions' => 'Weight & dims',
 		'None' => 'None'
 	);
+    
+    // Mod shipping fields
 	$fields['shipping']['shipping_company']['required'] = true;
+	$fields['billing']['billing_company']['required'] = true;
+    
 	return $fields;
 }
-add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields', 9999 );
 
 
 // Adding extra fields to Registration page and saving to shipping fields meta
@@ -105,20 +95,25 @@ add_action( 'woocommerce_register_post', 'wooc_validate_extra_register_fields', 
 function wooc_save_extra_register_fields( $customer_id ) {
 	if ( isset( $_POST['shipping_phone'] ) ) {
 		update_user_meta( $customer_id, 'shipping_phone', sanitize_text_field( $_POST['shipping_phone'] ) );
+		update_user_meta( $customer_id, 'billing_phone', sanitize_text_field( $_POST['shipping_phone'] ) );
 	}
 	if ( isset( $_POST['shipping_company'] ) ) {
 		update_user_meta( $customer_id, 'shipping_company', sanitize_text_field( $_POST['shipping_company'] ) );
+		update_user_meta( $customer_id, 'billing_company', sanitize_text_field( $_POST['shipping_company'] ) );
 	}
 	if ( isset( $_POST['shipping_first_name'] ) ) {
 		update_user_meta( $customer_id, 'first_name', sanitize_text_field( $_POST['shipping_first_name'] ) );
 		update_user_meta( $customer_id, 'shipping_first_name', sanitize_text_field( $_POST['shipping_first_name'] ) );
+		update_user_meta( $customer_id, 'billing_first_name', sanitize_text_field( $_POST['shipping_first_name'] ) );
 	}
 	if ( isset( $_POST['shipping_last_name'] ) ) {
 		update_user_meta( $customer_id, 'last_name', sanitize_text_field( $_POST['shipping_last_name'] ) );
 		update_user_meta( $customer_id, 'shipping_last_name', sanitize_text_field( $_POST['shipping_last_name'] ) );
+		update_user_meta( $customer_id, 'billing_last_name', sanitize_text_field( $_POST['shipping_last_name'] ) );
 	}
 	if ( isset( $_POST['email'] ) ) {
 		update_user_meta( $customer_id, 'shipping_email', sanitize_text_field( $_POST['email'] ) );
+		update_user_meta( $customer_id, 'billing_email', sanitize_text_field( $_POST['email'] ) );
 	}
     update_user_meta($customer_id, 'shipping_address_nickname', 'Main address');
 }
@@ -134,6 +129,14 @@ function my_custom_checkout_field( $checkout ) {
         'label'         => __('Job title'),
         ), $checkout->get_value( 'my_field_name' ));
     echo '</div>';
+    
+    echo '<div id="extra_notes">';
+    woocommerce_form_field( 'extra_notes', array(
+        'type'          => 'textarea',
+        'class'         => array('extra-notes form-row-wide'),
+        'label'         => __('Customer notes'),
+        ), $checkout->get_value( 'extra_notes' ));
+    echo '</div>';
 }
 add_action( 'woocommerce_after_order_notes', 'my_custom_checkout_field' );
 
@@ -141,11 +144,15 @@ function my_custom_checkout_field_update_order_meta( $order_id ) {
     if ( ! empty( $_POST['my_field_name'] ) ) {
         update_post_meta( $order_id, 'My Field', sanitize_text_field( $_POST['my_field_name'] ) );
     }
+    if ( ! empty( $_POST['extra_notes'] ) ) {
+        update_post_meta( $order_id, 'extra_notes', sanitize_text_field( $_POST['extra_notes'] ) );
+    }
 }
 add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta' );
 
 function my_custom_checkout_field_display_admin_order_meta($order){
-    echo '<p><strong>'.__('My Field').':</strong> ' . get_post_meta( $order->id, 'My Field', true ) . '</p>';
+    echo '<p><strong>'.__('Job title').':</strong> ' . get_post_meta( $order->id, 'My Field', true ) . '</p>';
+    echo '<p><strong>'.__('Extra notes').':</strong> ' . get_post_meta( $order->id, 'extra_notes', true ) . '</p>';
 }
 add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
 
@@ -381,7 +388,7 @@ function add_privacy_checkbox() {
 		'label_class' => array('woocommerce-form__label woocommerce-form__label-for-checkbox checkbox'),
 		'input_class' => array('woocommerce-form__input woocommerce-form__input-checkbox input-checkbox'),
 		'required' => true,
-		'label' => 'I\'ve read and accept the <a href="/kenex/privacy-policy">Privacy Policy</a>',
+		'label' => 'I\'ve read and accept the <a href="/kenex/privacy-policy">privacy policy</a>',
 	));
 }
 add_action( 'woocommerce_review_order_before_submit', 'add_privacy_checkbox', 9 );
@@ -418,5 +425,62 @@ function filter_woocommerce_single_product_image_thumbnail_html( $sprintf, $post
     return $sprintf; 
 }; 
 add_filter( 'woocommerce_single_product_image_thumbnail_html', 'filter_woocommerce_single_product_image_thumbnail_html', 10, 2 );
+
+
+// Display SKU on variation product page
+function display_variation_sku( $variation_data, $product, $variation ) {
+    $html = ''; // Initializing
+
+    // Inserting SKU
+    if( ! empty( $variation_data['sku'] ) ){
+        $html .= '</div><p class="woocommerce-variation-sku">' . __('SKU:') . ' ' . $variation_data['sku'] . '</p>';
+    }
+
+    // Using the variation description to add dynamically the SKU and the GTIN
+    $variation_data['variation_description'] .= $html;
+
+    return $variation_data;
+}
+add_filter( 'woocommerce_available_variation', 'display_variation_sku', 20, 3 );
+
+
+// Show empty cats and hide product count
+add_filter( 'woocommerce_product_subcategories_hide_empty', '__return_false', 10, 1 );
+add_filter( 'woocommerce_subcategory_count_html', '__return_false' );
+// Hide uncategorized
+function custom_woocommerce_product_subcategories_args( $args ) {
+    $args['exclude'] = get_option( 'default_product_cat' );
+    return $args;
+}
+add_filter( 'woocommerce_product_subcategories_args', 'custom_woocommerce_product_subcategories_args' );
+
+
+// Change added to cart message
+function woo_add_to_cart_message_html( $message, $products ) {
+	$count = 0;
+	$titles = array();
+	foreach ( $products as $product_id => $qty ) {
+		$titles[] = absint( $qty ) . ' &times; ' . sprintf( _x( '&ldquo;%s&rdquo;', 'Item name in quotes', 'woocommerce' ), strip_tags( get_the_title( $product_id ) ) );
+		$count += $qty;
+	}
+	$titles     = array_filter( $titles );
+	$added_text = sprintf( _n(
+		'%s is added to your quote.', // Singular
+		'%s are added to your quote.', // Plural
+		$count, // Number of products added
+		'woocommerce' // Textdomain
+	), wc_format_list_of_items( $titles ) );
+    
+	$message    = sprintf( '<a href="%s" class="button wc-forward">%s</a> %s', esc_url( wc_get_page_permalink( 'cart' ) ), esc_html__( 'View cart', 'woocommerce' ), esc_html( $added_text ) );
+	return $message;
+}
+add_filter( 'wc_add_to_cart_message_html', 'woo_add_to_cart_message_html', 10, 2 );
+
+
+// Change order button text
+function misha_custom_button_text( $button_text ) {
+   return 'Request quote'; // new text is here 
+}
+add_filter( 'woocommerce_order_button_text', 'misha_custom_button_text' );
 
 ?>

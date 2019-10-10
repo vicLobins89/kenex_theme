@@ -6,7 +6,7 @@ function data_fetch(){
     
     $the_query = new WP_Query( 
         array( 
-            'posts_per_page' => 20,
+            'posts_per_page' => 4,
             'post_type' => array('product', 'product_variation'),
             'meta_query' => array(
                 array(
@@ -22,6 +22,7 @@ function data_fetch(){
         <thead>
             <tr>
                 <th class="product-name">Product</th>
+                <th class="product-code">Code</th>
                 <th>Description</th>
                 <th>Image</th>
                 <th>Quantity</th>
@@ -47,13 +48,15 @@ function data_fetch(){
                     <a href="<?php echo esc_url( post_permalink() ); ?>"><?php the_title();?></a>
                 </td>
                 
+                <td class="product-code"><?php echo $product->get_sku(); ?></td>
+                
                 <td>
                     <?php echo $description; ?>
                 </td>
                 
                 <td class="product-thumbnail" width="80"><?php echo $product->get_image(); ?></td>
                 
-                <td width="80"><input type="number" id="qty" name="qty" value="1" min="1" max="99"></td>
+                <td width="80"><input type="number" id="qty" name="qty" class="custom_qty" onchange="Data(this)" value="1" min="1" max="99"></td>
                 
                 <td>
                     <?php
@@ -85,35 +88,50 @@ add_action('wp_ajax_nopriv_data_fetch','data_fetch');
 function ajax_fetch() {
 ?>
 <script type="text/javascript">
+var timeout = null;
 function fetchResults(){
-	var keyword = jQuery('#searchInput').val();
-	if(keyword == ""){
-		jQuery('#datafetch').html("");
-	} else {
-		jQuery.ajax({
-			url: '<?php echo admin_url('admin-ajax.php'); ?>',
-			type: 'post',
-			data: { action: 'data_fetch', keyword: keyword  },
-			success: function(data) {
-				jQuery('#datafetch').html( data );
-			}
-		});
-	}
+    var keyword = jQuery('#searchInput').val();
+    
+    clearTimeout(timeout);
+    
+    timeout = setTimeout(function () {
+        if( keyword == "" || keyword.length < 3 ) {
+            jQuery('#datafetch').html('');
+        } else {
+            jQuery.ajax({
+                url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                type: 'post',
+                data: { action: 'data_fetch', keyword: keyword  },
+                beforeSend: function() {
+                    jQuery('#loader').show();
+                },
+                complete: function(){
+                    jQuery('#loader').hide();
+                },
+                success: function(data) {
+                    jQuery('#datafetch').fadeOut( 100, function(){
+                        jQuery(this).html( data );
+                    }).fadeIn( 500 )
+                }
+            });
+        }
+    }, 500);
     
 }
+
+function Data(el){
+    var quantity = jQuery(el).val();
+    jQuery(el).closest('tr').find('.add_to_cart_button').attr('data-quantity', quantity);
+}
+
 jQuery(document).ready(function($){
+    if( $('body').hasClass('page-quick-quote') ) {
+        fetchResults();
+    }
+    
     $('#quickseaerch').submit(function(e){
         e.preventDefault();
         fetchResults();
-    });
-    
-    $(document).ajaxComplete(function(){
-        $('#datafetch #qty').on('keyup', function(){
-            var quantity = $(this).val(),
-                the_href = $(this).closest('tr').find('.add_to_cart_button').attr('href');
-            
-            $(this).closest('tr').find('.add_to_cart_button').attr('data-quantity', quantity);
-        });
     });
 });
 </script>

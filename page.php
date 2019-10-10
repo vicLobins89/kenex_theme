@@ -37,10 +37,10 @@
 									$addStyles = array();
 									$styles;
 									if( $padding ) {
-										if( $padding[padding_top] ) { array_push($addStyles, "padding-top: $padding[padding_top];"); }
-										if( $padding[padding_right] ) { array_push($addStyles, "padding-right: $padding[padding_right];"); }
-										if( $padding[padding_bottom] ) { array_push($addStyles, "padding-bottom: $padding[padding_bottom];"); }
-										if( $padding[padding_left] ) { array_push($addStyles, "padding-left: $padding[padding_left];"); }
+										if( $padding['padding_top'] ) { array_push($addStyles, "padding-top: $padding[padding_top];"); }
+										if( $padding['padding_right'] ) { array_push($addStyles, "padding-right: $padding[padding_right];"); }
+										if( $padding['padding_bottom'] ) { array_push($addStyles, "padding-bottom: $padding[padding_bottom];"); }
+										if( $padding['padding_left'] ) { array_push($addStyles, "padding-left: $padding[padding_left];"); }
 									}
 									if( get_sub_field('bg_colour') ) {
 										array_push($addClasses, "bg-colour");
@@ -49,6 +49,9 @@
 									}
 									if( get_sub_field('gradient') ) {
 										array_push($addClasses, "gradient");
+									}
+									if( get_sub_field('class') ) {
+										array_push($addClasses, get_sub_field('class'));
 									}
 									if( isset($addClasses) || isset($addStyles) ) {
 										$styles = ' style="';
@@ -138,7 +141,7 @@
 									'post_type'   => 'product',
 									'post_status' => 'publish',
 									'posts_per_page'  => '4',
-									'orderby'=>'rand',
+                                    'post__in' => array(987, 507, 820, 394)
 								);
 
 								$additional_products = new WP_Query( $args );
@@ -151,7 +154,7 @@
 											<?php while ( $additional_products->have_posts() ) : $additional_products->the_post(); ?>
 												<li <?php wc_product_class(); ?>>
 													<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="post-thumb">
-														<?php the_post_thumbnail('full'); ?>
+														<?php the_post_thumbnail('product-image'); ?>
 													</a>
 
 													<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="post-title">

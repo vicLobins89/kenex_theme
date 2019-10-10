@@ -77,6 +77,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php //do_action( 'woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id() ); ?>
 		<?php do_action( 'woocommerce_thankyou', $order->get_id() ); ?>
+    
+        <a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>" class="checkout-button button alt wc-forward">Return to products</a>
 
 	<?php else : ?>
 

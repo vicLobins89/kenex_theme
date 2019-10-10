@@ -15,15 +15,16 @@
 						
 						<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                             
-                            <section class="entry-content cf row wrap woocommerce" itemprop="articleBody">
+                            <section class="entry-content cf row wrap woocommerce quick-quote" itemprop="articleBody">
                                 <div class="cf">
                                     <h1 class="flair h3">Quick quote</h1>
                                     
-                                    <?php /* Called in functions.php */ ?>
+                                    <?php /* Called in inc/ajax-search.php */ ?>
                                     <form method="get" class="quickseaerch" id="quickseaerch" action="<?php echo esc_url( home_url('/') ); ?>">
-                                        <input type="text" id="searchInput" name="s" onKeyUp="fetchResults()" placeholder="Please enter the product SKU code">
+                                        <input type="text" id="searchInput" name="s" onKeyUp="fetchResults()" placeholder="Please enter the product code">
                                     </form>
                                     <table id="datafetch" class="shop_table"></table>
+                                    <div id="loader"><div></div><div></div><div></div><div></div></div>
                                 </div>
                             </section>
 							

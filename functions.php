@@ -66,6 +66,7 @@ if ( ! isset( $content_width ) ) {
 // Thumbnail sizes
 add_image_size( 'bones-thumb-600', 600, 150, true );
 add_image_size( 'bones-thumb-300', 300, 100, true );
+add_image_size( 'product-image', 900, 1800, true );
 
 
 add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );
@@ -74,6 +75,7 @@ function bones_custom_image_sizes( $sizes ) {
     return array_merge( $sizes, array(
         'bones-thumb-600' => __('600px by 150px'),
         'bones-thumb-300' => __('300px by 100px'),
+        'product-image'   => __('900px by 1800px'),
     ) );
 }
 
@@ -154,6 +156,14 @@ function bones_register_sidebars() {
 		'id' => 'bespoke',
 		'name' => __( 'Bespoke service', 'bonestheme' ),
 		'description' => __( 'Bespoke services message on category pages.', 'bonestheme' ),
+		'before_widget' => '<div class="widget %2$s">',
+		'after_widget' => '</div>'
+	));
+	
+	register_sidebar(array(
+		'id' => 'shop',
+		'name' => __( 'Shop page content', 'bonestheme' ),
+		'description' => __( 'Content for the main shop page.', 'bonestheme' ),
 		'before_widget' => '<div class="widget %2$s">',
 		'after_widget' => '</div>'
 	));

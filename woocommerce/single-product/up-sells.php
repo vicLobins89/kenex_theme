@@ -20,11 +20,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if( get_field('upsells_title') ) {
+    $upsells_title = get_field('upsells_title');
+}
+
 if ( $upsells ) : ?>
 
 	<section class="up-sells upsells products"><div class="cf">
 
-		<h2><?php esc_html_e( 'Complete the kit', 'woocommerce' ) ?></h2>
+		<h2><?php echo ( $upsells_title ? $upsells_title : esc_html( 'Complete the kit', 'woocommerce' ) ); ?></h2>
 
 		<?php //woocommerce_product_loop_start(); ?>
 		

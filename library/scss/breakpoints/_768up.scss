@@ -343,11 +343,13 @@ NAVIGATION STYLES
 POSTS & CONTENT STYLES
 *********************/
 
+.featured .col-12,
 .featured-image {
 	width: 100%;
     margin: 0 auto;
 }
 
+.featured-text,
 .hero-title {
      width: 80%;
      width: calc(100% - 6rem);
@@ -355,6 +357,15 @@ POSTS & CONTENT STYLES
 
 .page-title {
 	font-size: 1rem;
+}
+
+.row {
+    &.last-child-narrow {
+        .col-6:last-child {
+            width: 33%;
+            float: right;
+        }
+    }
 }
 
 .entry-content {

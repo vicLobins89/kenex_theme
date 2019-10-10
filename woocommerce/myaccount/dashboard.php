@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	/* translators: 1: user display name 2: logout url */
 	printf(
 		__( 'Hello %1$s', 'woocommerce' ),
-		'<strong>' . esc_html( $current_user->display_name ) . '</strong>'
+		'<strong>' . esc_html( $current_user->first_name ) . '</strong>'
 	);
 ?></p>
 
@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <p><?php
     printf(
-        __( 'If you know the code of what you would like a quote for <a href="%1$s">click here</a>', 'woocommerce' ),
+        __( 'If you know the product code and would like to request a quote, <a href="%1$s">click here</a>', 'woocommerce' ),
         home_url('/quick-quite')
     );
 ?></p>

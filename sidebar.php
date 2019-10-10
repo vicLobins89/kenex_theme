@@ -9,7 +9,6 @@
 		<?php
 			$parentid = get_queried_object_id();
 			$termParent = get_term($parentid, 'product_cat');
-			$args;
 	
 			if( $termParent->parent ) {
 				$args = array(
@@ -30,6 +29,22 @@
 							echo '<a href="' .  esc_url( get_term_link( $term ) ) . '" class="' . $term->slug . '">';
 								echo $term->name;
 							echo '</a>';
+                            
+                            $subcats = get_terms( 'product_cat', array(
+                                'child_of' => $term->term_id
+                            ) );
+                            
+                            if( !empty( $subcats ) ) {
+                                echo '<ul class="subcats">';
+                                foreach ( $subcats as $subcat ) {
+                                    echo '<li>';
+                                        echo '<a href="' .  esc_url( get_term_link( $subcat->term_id ) ) . '" class="' . $subcat->slug . '">';
+                                            echo $subcat->name;
+                                        echo '</a>';
+                                    echo '</li>';
+                                }
+                                echo '</ul>';
+                            }
 						echo '</li>';
 					}
 				echo '</ul>';

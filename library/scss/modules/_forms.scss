@@ -18,22 +18,16 @@ INPUTS
 	margin: 2rem 0;
 }
 
-.wpcf7-form-control.wpcf7-submit {
-	width: 27%;
-	display: block;
-	padding: 13px 0;
-	margin: auto;
-	border: 2px solid $blue;
-	text-align: center;
-	background: $blue;
-	font-weight: 800;
-	color: $white;
-	@include transition(all 0.24s ease-in-out);
-	
-	&:hover, &:focus {
-		background: $white;
-		color: $blue;
-	}
+.wpcf7-form {
+    a {
+        color: $pink;
+    }
+}
+
+.wpcf7-acceptance {
+    .wpcf7-list-item {
+        margin-left: 0;
+    }
 }
 
 // setting up defaults
@@ -102,8 +96,7 @@ textarea,
   &[disabled],
   &.is-disabled {
     cursor: not-allowed;
-    border-color: $disabled-gray;
-    opacity: 0.6;
+    opacity: 0.3;
 
     &:focus,
     &:active {

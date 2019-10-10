@@ -49,6 +49,9 @@ FONT FACE
   src: url("../fonts/Bliss-Regular.woff2") format("woff2"), url("../fonts/Bliss-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
+.pink {
+  color: #c4007a; }
+
 /******************************************************************
 Site Name: Honey
 Author: Vic Lobins
@@ -382,16 +385,22 @@ NAVIGATION STYLES
 /*********************
 POSTS & CONTENT STYLES
 *********************/
+.featured .col-12,
 .featured-image {
   width: 100%;
   margin: 0 auto; }
 
+.featured-text,
 .hero-title {
   width: 80%;
   width: calc(100% - 6rem); }
 
 .page-title {
   font-size: 1rem; }
+
+.row.last-child-narrow .col-6:last-child {
+  width: 33%;
+  float: right; }
 
 .entry-content {
   padding: 2rem 3rem;

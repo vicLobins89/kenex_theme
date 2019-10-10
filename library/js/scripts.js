@@ -15,6 +15,9 @@ function updateViewportDimensions() {
 // setting the viewport width
 var viewport = updateViewportDimensions();
 
+var ua = window.navigator.userAgent;
+var isIE = /MSIE|Trident/.test(ua);
+
 jQuery(document).ready(function($) {
 	
 	"use strict";
@@ -27,11 +30,13 @@ jQuery(document).ready(function($) {
 		}
 	}
     
-    const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('s');
-    $('input[type="search"]').click(function(){
-        $(this).val(myParam);
-    });
+    if( !isIE ) {
+        var urlParams = new URLSearchParams(window.location.search);
+        var myParam = urlParams.get('s');
+        $('input[type="search"]').click(function(){
+            $(this).val(myParam);
+        });
+    }
 	
     // Qty fix
 	$('.qty').on('keyup keydown change blur', function(){
@@ -160,5 +165,41 @@ jQuery(document).ready(function($) {
 			}
 		});
 	});
+    
+    
+    // Checkout validation to disable/enable button
+    $("#ship-to-different-address-checkbox").change(function() {
+        if( this.checked ){
+            $('.shipping_address').removeClass('hidden');
+        } else {
+            $('.shipping_address').addClass('hidden');
+        }
+    });
+    
+    $(document).ajaxComplete(function(){
+        $('input, select').on('keyup blur', function(){
+            var empty = $('.woocommerce-billing-fields .validate-required input, .shipping_address:not(.hidden) .validate-required input').filter(function() {
+                return this.value === "";
+            });
+
+            if(empty.length) {
+                $('#place_order').prop('disabled', true);
+            } else {
+                $('#place_order').prop('disabled', false);
+            }
+        });
+    });
+    
+    $('.woocommerce-ResetPassword input').on('keyup blur', function(e){
+        var emptyPass = $('.woocommerce-ResetPassword input').filter(function() {
+            return this.value === "";
+        });
+
+        if(emptyPass.length) {
+            $('button').prop('disabled', true).addClass('hidden');
+        } else {
+            $('button').prop('disabled', false).removeClass('hidden');
+        }
+    });
     
 });

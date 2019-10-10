@@ -80,6 +80,7 @@ if ( woocommerce_product_loop() ) {
 			do_action( 'woocommerce_shop_loop' );
 
 			wc_get_template_part( 'content', 'product' );
+
 		}
 	}
 
@@ -98,6 +99,10 @@ if ( woocommerce_product_loop() ) {
 	 * @hooked wc_no_products_found - 10
 	 */
 	do_action( 'woocommerce_no_products_found' );
+}
+    
+if( is_shop() && is_active_sidebar( 'shop' ) ) {
+    dynamic_sidebar( 'shop' );
 }
 
 /**

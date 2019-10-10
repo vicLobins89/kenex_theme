@@ -393,21 +393,26 @@ LAYOUT & GRID STYLES
 			}
 		}
 		
-		&:nth-child(1), &:nth-child(4) {
+		&:nth-child(1), &:nth-child(4), &:nth-child(6) {
 			.col-12 {
 				background: lighten($light-gray, 10%);
-				padding-right: 3rem;
-				padding-left: 0;
+                
+                .page-about-us & {
+                    padding-right: 3rem;
+                    padding-left: 0;
+                }
 			}
 			
-			img {
-				float: left;
-				margin-right: 2rem;
-				margin-left: 0;
-			}
+            .page-about-us & {
+                img {
+                    float: left;
+                    margin-right: 2rem;
+                    margin-left: 0;
+                }
+            }
 		}
 		
-		&:nth-child(2) {
+		&:nth-child(2), &:nth-child(6) {
 			.col-12 {
 				background: $gray;
 				color: $white;
@@ -423,16 +428,40 @@ LAYOUT & GRID STYLES
 		&:nth-child(5) {
 			.col-12 {
 				background: lighten($light-gray, 10%);
-				padding-left: 3rem;
-				padding-right: 0;
+                
+                .page-about-us & {
+                    padding-left: 3rem;
+                    padding-right: 0;
+                }
 			}
 			
-			img {
-				float: right;
-				margin-left: 2rem;
-				margin-right: 0;
-			}
+			.page-about-us & {
+                img {
+                    float: right;
+                    margin-left: 2rem;
+                    margin-right: 0;
+                }
+            }
 		}
+        
+        &.pink {
+            .col-12 {
+                background: $pink;
+                
+                h2 {
+                    background: url(../images/flair-white.png) no-repeat left bottom;
+                    background-size: 6rem;
+                }
+                
+                h2, p, a {
+                    color: #fff;
+                }
+                
+                a {
+                    text-decoration: underline;
+                }
+            }
+        }
 	}
 	
 	&.products-slider {
@@ -445,6 +474,11 @@ LAYOUT & GRID STYLES
         
 		padding-top: 0;
 		padding-bottom: 0;
+        
+        .home & {
+            background: none;
+            margin-top: 2rem;
+        }
 		
 		.woocommerce.tax-product_cat & {
 			padding-top: 3rem;
@@ -597,6 +631,10 @@ a {
 	/* on hover */
 	&:hover, &:focus {
 		color: $link-hover;
+        
+        .page-checkout & {
+            text-decoration: underline;
+        }
 	}
 
 	/* mobile tap color */
@@ -657,6 +695,10 @@ p, .p {
 
 .copy-l {
 	font-size: 1.7rem !important;
+    
+    p {
+        font-size: 90%;
+    }
 }
 
 .copy-xl {
@@ -1010,6 +1052,7 @@ POSTS & CONTENT STYLES
 	font-size: 1rem;
 }
 
+.featured .col-12,
 .featured-image {
 	width: 270%;
     margin-left: -85%;
@@ -1032,6 +1075,24 @@ POSTS & CONTENT STYLES
 	}
 }
 
+.featured {
+    padding-bottom: 0 !important;
+    
+    .col-12 {
+        padding: 0;
+
+        p, img {
+            margin: 0;
+            font-size: 0;
+        }
+    }
+    
+    + .alt {
+        padding-top: 0;
+    }
+}
+
+.featured-text,
 .hero-title {
     position: absolute;
     font-size: 1rem;
@@ -1598,6 +1659,10 @@ SIDEBARS & ASIDES
 	.product-cats {
 		padding: 0;
 		margin: 0;
+        
+        li {
+            font-size: 1.15rem;
+        }
 
 		.category {
 			padding: 1rem 0;
@@ -1605,16 +1670,33 @@ SIDEBARS & ASIDES
 			max-width: 90%;
 			border-bottom: 1px solid lighten($gray, 15%);
 
-			&:hover, &:focus, &.current {
-				a {
-					color: $pink;
-				}
+			a:hover, a:focus, &.current a {
+				color: $pink;
 			}
 
 			&:first-child {
 				padding-top: 0;
 			}
 		}
+        
+        .subcats {
+            margin: 12px 0 0 0;
+            
+            li {
+                padding-left: 0;
+                font-size: 1rem;
+                vertical-align: middle;
+                
+                &:before {
+                    content: '> ';
+                    display: inline-block;
+                    color: $pink;
+                    font-size: .9rem;
+                    vertical-align: middle;
+                    margin-right: 8px;
+                }
+            }
+        }
 	}
 }
 
@@ -1727,11 +1809,6 @@ FOOTER STYLES
     width: 50%;
     padding: 0;
     float: left;
-    
-	img {
-		margin-right: 1rem;
-        width: 50px;
-	}
 }
 
 .footer-3 {
@@ -2002,6 +2079,13 @@ dd p {
 	table.shop_table {
 		border-radius: 0;
 	}
+    
+    .woocommerce-checkout-review-order-table {
+        .product-total,
+        tfoot {
+            display: none;
+        }
+    }
 }
 
 .woocommerce-pagination {
@@ -2030,6 +2114,24 @@ dd p {
 				}
 			}
 		}
+        
+        li.product-category {
+            img {
+                margin-bottom: 0;
+            }
+        }
+        
+        .woocommerce-loop-category__title,
+        .woocommerce-loop-product__title {
+            font-size: 1.35em;
+            color: $black;
+            background: url(../images/flair-pink.png) no-repeat left bottom;
+            background-size: 5rem;
+            padding-bottom: 1.15rem;
+            margin-bottom: 1rem;
+
+            @include transition(color 0.3s ease-in-out);
+        }
 		
 		.woocommerce-LoopProduct-link {
 			display: block;
@@ -2041,17 +2143,6 @@ dd p {
 			
 			.shop-loop-title {
 				background: $white;
-				
-				.woocommerce-loop-product__title {
-					font-size: 1.35em;
-					color: $black;
-					background: url(../images/flair-pink.png) no-repeat left bottom;
-					background-size: 5rem;
-					padding-bottom: 1.15rem;
-					margin-bottom: 1rem;
-					
-					@include transition(color 0.3s ease-in-out);
-				}
 				
 				p {
 					font-size: 1em;
@@ -2503,6 +2594,10 @@ dd p {
 			.product-thumbnail {
 				width: 130px;
 				padding: 18px;
+                
+                img {
+                    width: 130px;
+                }
 				
 				a {
 					display: block;
@@ -2566,6 +2661,23 @@ dd p {
 	&:before {
 		color: $pink;
 	}
+    
+    .page-checkout & {
+        border: 3px solid $pink;
+        font-size: 1.15rem;
+        padding: 1.5em 2em 1.5em 3.5em;
+        text-align: center;
+        font-weight: bold;
+        
+        &:before {
+            position: relative;
+            top: auto;
+            left: auto;
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: normal;
+        }
+    }
 }
 
 .woocommerce {
@@ -2577,16 +2689,7 @@ dd p {
         }
     }
     
-    .woocommerce-customer-details {
-        .woocommerce-column--billing-address {
-            display: none;
-        }
-        
-        .woocommerce-column--shipping-address {
-            float: left;
-            padding: 0;
-        }
-        
+    .woocommerce-customer-details {        
         address {
             border-radius: 0 !important;
         }
@@ -2608,6 +2711,12 @@ dd p {
 		p:first-of-type {
 			margin-top: 0;
 		}
+        
+        .woocommerce-MyAccount-downloads-file {
+            padding: .5rem .75rem .4rem !important;
+            display: block;
+            text-align: center;
+        }
     }
     
     .woocommerce-MyAccount-navigation {
@@ -2671,11 +2780,15 @@ dd p {
 	.woocommerce-orders-table__cell-order-actions {
 		width: 140px;
 		text-align: center;
+        
+        .button {
+            width: 120px;
+        }
 	}
 	
 	.message {
 		max-width: 700px;
-		padding: 0 1rem;
+		padding: 0 7px;
 		margin-bottom: 1rem;
 		border: 1px dotted $light-gray;
 		
@@ -2692,6 +2805,7 @@ dd p {
 			text-align: center;
 			font-size: .95rem;
 			width: 79%;
+            width: calc(100% - 127px);
 		}
 		
 		.button {
@@ -2703,6 +2817,7 @@ dd p {
 			width: 20%;
 			padding-left: 0;
 			padding-right: 0;
+            width: 120px;
 		}
 	}
 	
@@ -2811,7 +2926,11 @@ dd p {
             padding-bottom: 4rem;
             
             &.address-billing {
-                display: none;
+               margin-right: 20px;
+                
+                .default {
+                    display: none;
+                }
             }
 		}
 		
@@ -2862,8 +2981,31 @@ dd p {
 }
 
 
+.woocommerce-ResetPassword {
+    button.hidden {
+        background: $light-gray !important;
+        border-color: $light-gray !important;
+        color: $gray !important;
+        opacity: .6;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+}
+
+
 // Quick quote
 .page-quick-quote {
+    .row.quick-quote {
+        position: relative;
+        
+        #loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -32px 0 0 -32px;
+        }
+    }
+    
     .quicksearch {
         margin-bottom: 1.5rem;
     }
@@ -2907,6 +3049,7 @@ dd p {
         img {
             display: block;
             margin: 0;
+            width: 100px;
         }
     }
 }

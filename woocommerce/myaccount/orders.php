@@ -96,8 +96,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 			<strong><?php esc_html_e( 'Create a new quote by exploring our shop', 'woocommerce' ); ?></strong>
 		</p>
 		<a class="woocommerce-button button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-			<?php esc_html_e( 'Go to', 'woocommerce' ); ?><br>
-			<?php esc_html_e( 'the shop', 'woocommerce' ); ?>
+			<?php esc_html_e( 'View products', 'woocommerce' ); ?>
 		</a>
 	</div>
 
@@ -121,8 +120,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 			<strong><?php esc_html_e( 'No order has been made yet.', 'woocommerce' ); ?></strong>
 		</p>
 		<a class="woocommerce-button button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-			<?php esc_html_e( 'Go to', 'woocommerce' ); ?><br>
-			<?php esc_html_e( 'the shop', 'woocommerce' ); ?>
+			<?php esc_html_e( 'View products', 'woocommerce' ); ?>
 		</a>
 	</div>
 <?php endif; ?>

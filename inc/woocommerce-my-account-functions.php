@@ -10,7 +10,7 @@ function my_account_menu_order() {
  		'orders'             => __( 'Previous quotes', 'woocommerce' ),
  		'downloads'          => __( 'Downloads', 'woocommerce' ),
  		'edit-address'       => __( 'Addresses', 'woocommerce' ),
- 		'edit-account'    	=> __( 'Account Details', 'woocommerce' ),
+ 		'edit-account'    	 => __( 'Account details', 'woocommerce' ),
  		'customer-logout'    => __( 'Logout', 'woocommerce' ),
  	);
  	return $menuOrder;
@@ -38,5 +38,13 @@ function new_orders_columns( $columns = array() ) {
     return $columns;
 }
 add_filter( 'woocommerce_account_orders_columns', 'new_orders_columns' );
+
+
+// Set Display name not required
+function wc_save_account_details_required_fields( $required_fields ){
+    unset( $required_fields['account_display_name'] );
+    return $required_fields;
+}
+add_filter('woocommerce_save_account_details_required_fields', 'wc_save_account_details_required_fields' );
 
 ?>

@@ -46,7 +46,7 @@ do_action( 'woocommerce_before_account_downloads', $has_downloads ); ?>
 				<th class="download-product"><span class="nobr">File name</span></th>
 				<th class="download-type"><span class="nobr">File type</span></th>
 				<th class="download-date"><span class="nobr">Date</span></th>
-				<th class="download-file"><span class="nobr">Action</span></th>
+				<th width="150" class="download-file"><span class="nobr">Action</span></th>
 			</tr>
 		</thead>
 
@@ -59,14 +59,14 @@ do_action( 'woocommerce_before_account_downloads', $has_downloads ); ?>
 					<a href="<?php echo $download['product_url']; ?>"><?php echo $download['download_name']; ?></a>
 				</td>
 				
-				<td>PDF</td>
+				<td><i class="fas fa-file-pdf"></i>&nbsp;&nbsp;PDF</td>
 				
 				<td class="download-date woocommerce-orders-table__cell-order-date">
 					<time datetime="<?php echo esc_attr( $order->get_date_created()->format( 'Ymd' ) ); ?>"><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></time>
 				</td>
 				
-				<td class="download-file" data-title="Download">
-					<a href="<?php echo $download['download_url']; ?>" class="woocommerce-MyAccount-downloads-file button alt">Download</a>			
+				<td width="150" class="download-file" data-title="Download">
+					<a href="<?php echo $download['download_url']; ?>" class="woocommerce-MyAccount-downloads-file button alt">Download</a>
 				</td>
 			</tr>
 		<?php endforeach; ?>
@@ -87,8 +87,7 @@ do_action( 'woocommerce_before_account_downloads', $has_downloads ); ?>
 			<strong><?php esc_html_e( 'No order has been made yet.', 'woocommerce' ); ?></strong>
 		</p>
 		<a class="woocommerce-button button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-			<?php esc_html_e( 'Go to', 'woocommerce' ); ?><br>
-			<?php esc_html_e( 'the shop', 'woocommerce' ); ?>
+			<?php esc_html_e( 'View products', 'woocommerce' ); ?>
 		</a>
 	</div>
 <?php endif; ?>
